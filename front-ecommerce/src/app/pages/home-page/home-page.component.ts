@@ -1,37 +1,42 @@
-import { Component } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { RouterModule } from '@angular/router'; // Add this import
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Product } from '../../product.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
-  standalone: true, // ✅ Required for Angular 17+
-  imports: [CarouselModule, RouterModule], // ✅ Import CarouselModule directly
+  standalone: true,
+  imports: [CommonModule, CarouselModule, RouterModule],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
+  // ========== Component Properties ==========
+  public products: Product[] = [];
+  public partnersArray = [
+    { imgName: '../assets/partner/p1.png' },
+    { imgName: '../assets/partner/p4.png' },
+    { imgName: '../assets/partner/p2.png' },
+    { imgName: '../assets/partner/p5.png' },
+    { imgName: '../assets/partner/p3.png' },
+    { imgName: '../assets/partner/p6.png' }
+  ];
 
-  url1: string = "assets/img1.jpg";
-  url2: string = "assets/img2.jpg";
-  url3: string = "assets/img3.jpg";
-  url4: string = "assets/img4.jpg";
-  url5: string = "assets/img5.jpg";
-  url6: string = "assets/img6.jpg";
-  url7: string = "assets/img7.jpg";
-  url8: string = "assets/img8.jpg";
+  // Image URLs
+  public url1 = 'assets/img1.jpg';
+  public url2 = 'assets/img2.jpg';
+  public url3 = 'assets/img3.jpg';
+  public url4 = 'assets/img4.jpg';
+  public url5 = 'assets/img5.jpg';
+  public url6 = 'assets/img6.jpg';
+  public url7 = 'assets/img7.jpg';
+  public url8 = 'assets/img8.jpg';
 
-  changeImage1(event: any) { this.url1 = event.target.src; }
-  changeImage2(event: any) { this.url2 = event.target.src; }
-  changeImage3(event: any) { this.url3 = event.target.src; }
-  changeImage4(event: any) { this.url4 = event.target.src; }
-  changeImage5(event: any) { this.url5 = event.target.src; }
-  changeImage6(event: any) { this.url6 = event.target.src; }
-  changeImage7(event: any) { this.url7 = event.target.src; }
-  changeImage8(event: any) { this.url8 = event.target.src; }
-
-  bannerSlide: OwlOptions = {
+  // Carousel configurations
+  public bannerSlide: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -48,7 +53,7 @@ export class HomePageComponent {
     nav: true
   };
 
-  testimonialSlider: OwlOptions = {
+  public testimonialSlider: OwlOptions = {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
@@ -65,29 +70,7 @@ export class HomePageComponent {
     nav: true
   };
 
-
-  partnersArray: any = [
-    {
-      imgName: "../assets/partner/p1.png"
-    },
-    {
-      imgName: "../assets/partner/p4.png"
-    },
-    {
-      imgName: "../assets/partner/p2.png"
-    },
-    {
-      imgName: "../assets/partner/p5.png"
-    },
-    {
-      imgName: "../assets/partner/p3.png"
-    },
-    {
-      imgName: "../assets/partner/p6.png"
-    }
-  ];
-
-  customOptions: OwlOptions = {
+  public customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
@@ -104,7 +87,7 @@ export class HomePageComponent {
     nav: false
   };
 
-  policyOptions: OwlOptions = {
+  public policyOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -121,5 +104,44 @@ export class HomePageComponent {
     nav: true
   };
 
+  // ========== Constructor & Lifecycle Hooks ==========
+  constructor(private http: HttpClient) {}
 
+  ngOnInit(): void {
+    this.fetchProducts();
+  }
+
+  // ========== Public Methods ==========
+  public fetchProducts(): void {
+    this.http.get<Product[]>('YOUR_API_ENDPOINT_HERE').subscribe({
+      next: (data) => this.products = data,
+      error: (error) => console.error('Error fetching products:', error)
+    });
+  }
+
+  // Image change handlers
+  public changeImage1(event: Event): void {
+    this.url1 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage2(event: Event): void {
+    this.url2 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage3(event: Event): void {
+    this.url3 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage4(event: Event): void {
+    this.url4 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage5(event: Event): void {
+    this.url5 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage6(event: Event): void {
+    this.url6 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage7(event: Event): void {
+    this.url7 = (event.target as HTMLImageElement).src;
+  }
+  public changeImage8(event: Event): void {
+    this.url8 = (event.target as HTMLImageElement).src;
+  }
 }
