@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+.body{
+  padding: 0;
+  margin: 0;
+  background: #eee;
+}
+.banner{
+  position: relative;
+}
+
+.banner .owl-prev, .banner .owl-next{
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background: transparent!important;
+  transition: .3s all ease;
+}
+.banner .owl-prev{
+  left: 6px;
+}
+.banner .owl-next{
+  right: -60px;
+}
+.banner .owl-prev::before, .banner .owl-next::before{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  background: #ffffff24;
+  content: '';
+  border-radius: 50%;
+}
+
+.banner .owl-prev::before{
+  left: 44px;
+}
+.banner .owl-next::before{
+  right: -106px;
+}
+
+.banner .owl-prev i, .banner .owl-next i{
+  font-size: 20px;
+  position: absolute ;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner .owl-next i{
+  right: 0;
+}
+
+.banner .owl-prev:hover::before, .banner .owl-next:hover::before{
+  background: rgb(84, 51, 235)!important;
+}
+
+.testimonial .owl-prev, .testimonial .owl-next{
+position: absolute!important;
+background: #ffffff24!important;
+width: 64px!important;
+height: 64px!important;
+border-radius: 50%!important;
+z-index: 2!important;
+font-size: 24px!important;
+color: #111!important;
+transition: all .3s ease!important;
+top: 50%!important;
+transform: translate(-50%, -50%)!important;
+}
+.testimonial .owl-prev{
+  left: 114px!important;
+}
+
+.testimonial .owl-next{
+  right: 48px!important;
+}
+
+.testimonial .owl-prev i, .testimonial .owl-next i{
+position: absolute!important;
+top: 50%!important;
+left: 50% !important;
+transform: translate(-50%, -50%)!important;
+}
+
+.testimonial .owl-prev:hover, .testimonial .owl-next:hover{
+background: rgb(84, 51, 235)!important;
+color: #fff !important;
+}
+
+.policy-product .owl-next, .policy-product .owl-prev{
+  background: rgb(158 158 158 / 28%)!important;
+  color: #222!important;
+  height: 60px!important;
+  width: 60px!important;
+  border-radius: 50%!important;
+  position: absolute;
+  top: 50%;
+  transition: .3s all ease;
+}
+
+.policy-product .owl-next{
+right: -68px;
+transform: translate(-50%, -50%);
+}
+.policy-product .owl-prev{
+left: -8px;
+transform: translate(-50%, -50%);
+
+}
+.policy-product .owl-next:hover, .policy-product .owl-prev:hover{
+background: rgb(84, 51, 235)! important;
+color: #fff! important;
+}
+
+.policy-product .owl-next i, .policy-product .owl-prev i{
+font-size: 24px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}

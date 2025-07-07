@@ -1,0 +1,640 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="logo">
+         <h2>NovaGadget</h2>
+        </div>
+      </div>
+      <div class="col-md-8 text-right">
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Favorite</a>
+            <a href="#">Cart</a>
+            <a href="#">Contact</a>
+            <a routerLink="/login" class="login">Login</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="banner">
+      <owl-carousel-o [options]="bannerSlide">
+         <ng-template carouselSlide>
+          <img src="../../../assets/testimonial/m6.jpg" alt="Banner">
+         </ng-template>
+         <ng-template carouselSlide>
+          <img src="../../../assets/testimonial/m4.png" alt="Banner">
+
+         </ng-template>
+         <ng-template carouselSlide>
+          <img src="../../../assets/testimonial/m7.jpg" alt="Banner">
+
+         </ng-template>
+      </owl-carousel-o>
+</section>
+
+
+<!--<section class="testimonial">
+  <div class="containers">
+    <owl-carousel-o [options]="testimonialSlider">
+       <ng-template carouselSlide>
+        <div class="testimonial-image">
+          <img src="../../../assets/testimonial/pm2.png" alt="Testimonial">
+        </div>
+        <div class="testimonial-content text-center">
+          <h2>Yassmine</h2>
+          <h3>Frontend Developer</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="testimonial-image">
+          <img src="../../../assets/testimonial/pm1.png" alt="Testimonial">
+        </div>
+        <div class="testimonial-content text-center">
+          <h2>Jamel</h2>
+          <h3>Backend Developer</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+
+        </div>
+      </ng-template>
+       <ng-template carouselSlide>
+        <div class="testimonial-image">
+          <img src="../../../assets/testimonial/pm2.png" alt="Testimonial">
+        </div>
+        <div class="testimonial-content text-center">
+          <h2>Eya</h2>
+          <h3>Frontend Developer</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="testimonial-image">
+          <img src="../../../assets/testimonial/pm1.png" alt="Testimonial">
+        </div>
+        <div class="testimonial-content text-center">
+          <h2>Moatez</h2>
+          <h3>Backend Developer</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>-->
+
+<section class="bg-color">
+  <div class="containers">
+    <div class="title">
+      <h1><span>Top</span> Sellers</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage1($event)"><img src="assets/img1.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage1($event)"><img src="assets/img11.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage1($event)"><img src="assets/img12.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url1}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Pc Portable ASUS Zenbook Duo UX8406CA/ Ultra 9 285H/ 32 Go/ 1 To SSD/ Windows 11/ Gris Avec Sac
+              Asus</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">6 369,090 DT</span> <span class="old-price">6 999,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage2($event)"><img src="assets/img21.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage2($event)"><img src="assets/img22.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage2($event)"><img src="assets/img23.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url2}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Pc Portable Gamer Lenovo Legion 5 16IRX9/ i7-14650HX/ RTX 4070 8G/ 16 Go DDR5/ 1 To SSD/ Windows
+              11/ Gris</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money"> 5 530,990 DT</span> <span class="old-price">6 079,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage3($event)"><img src="assets/img3.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage3($event)"><img src="assets/img31.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage3($event)"><img src="assets/img32.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url3}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Apple MacBook Air M3 13" (2024)/ 24 Go/ 512 Go/ Silver</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">5 637,450 DT</span> <span class="old-price">6 195,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage4($event)"><img src="assets/img4.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage4($event)"><img src="assets/img41.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage4($event)"><img src="assets/img42.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url4}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Micro-Casque Gaming Nacon RIG 800 Pro HS Wireless Pour PlayStation/ Xbox et PC/ Noir</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">717,990 DT</span> <span class="old-price">789,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage5($event)"><img src="assets/img51.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage5($event)"><img src="assets/img52.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage5($event)"><img src="assets/img53.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url5}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">SAC A DOS BANGE BG099 17.3"/ Gold</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">326,690 DT</span> <span class="old-price">359,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage6($event)"><img src="assets/img62.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage6($event)"><img src="assets/img63.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage6($event)"><img src="assets/img61.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url6}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Souris Gamer Sans Fil LOGITECH G PRO X SUPERLIGHT 2 LIGHTSPEED/ Noir</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">426,790 DT</span> <span class="old-price">469,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage7($event)"><img src="assets/img71.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage7($event)"><img src="assets/img72.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage7($event)"><img src="assets/img73.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url7}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Clavier Gamer Filaire Redragon KITAVA K636CLO RGB/ Red Switch/ Noir</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">99,190 DT</span> <span class="old-price">109,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-main">
+            <div class="discount"> 9%</div>
+            <div class="label label-green">Pre-Order</div>
+            <div class="product-container">
+              <div class="p" (mouseover)="changeImage8($event)"><img src="assets/img81.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage8($event)"><img src="assets/img82.jpg" alt="Product"></div>
+              <div class="p" (mouseover)="changeImage8($event)"><img src="assets/img83.jpg" alt="Product"></div>
+            </div>
+            <div class="image">
+              <img src="{{url8}}" alt="Image">
+            </div>
+            <div class="cart-line"></div>
+            <div class="cart-item">
+              <ul>
+                <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                <li><a href=""><i class="fa fa-heart"></i></a></li>
+                <li><a href=""><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <a href="">Pack Gaming 4 en 1 Clavier + Souris + Casque + Tapis souris Konix - Drakkar Pack Rogue</a>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p><span class="money">199,290 DT</span> <span class="old-price">219,000 DT</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="policy">
+  <div class="containers text-center">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="policy-card">
+          <h2>News</h2>
+          <p>Daily tech and gaming news</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="policy-product">
+  <div class="containers">
+    <div class="bg-position">
+      <owl-carousel-o [options]="policyOptions">
+        <ng-template carouselSlide>
+          <div class="policy-p-card">
+            <div class="date">
+              <h3>01 July 2025</h3>
+            </div>
+            <div class="policy-img">
+              <img src="../../../assets/policy/news1.jpg" alt="P1">
+            </div>
+            <h2>OnePlus Nord 5 in for review</h2>
+            <p>Today we have with us the new OnePlus Nord 5, which is the latest mainline entry in the company’s
+              affordable series
+              of smartphones. The phone is set to launch next week alongside the Nord CE5 and today we can share a
+              sneak
+              peek at
+              the device with an unboxing.</p>
+            <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="policy-p-card">
+            <div class="date">
+              <h3>01 July 2025</h3>
+            </div>
+            <div class="policy-img">
+              <img src="../../../assets/policy/news2.jpg" alt="P1">
+            </div>
+            <h2>OnePlus Nord 5 in for review</h2>
+            <p>Today we have with us the new OnePlus Nord 5, which is the latest mainline entry in the company’s
+              affordable series
+              of smartphones. The phone is set to launch next week alongside the Nord CE5 and today we can share a
+              sneak
+              peek at
+              the device with an unboxing.</p>
+            <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="policy-p-card">
+            <div class="date">
+              <h3>01 July 2025</h3>
+            </div>
+            <div class="policy-img">
+              <img src="../../../assets/policy/news3.jpg" alt="P1">
+            </div>
+            <h2>OnePlus Nord 5 in for review</h2>
+            <p>Today we have with us the new OnePlus Nord 5, which is the latest mainline entry in the company’s
+              affordable series
+              of smartphones. The phone is set to launch next week alongside the Nord CE5 and today we can share a
+              sneak
+              peek at
+              the device with an unboxing.</p>
+            <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="policy-p-card">
+            <div class="date">
+              <h3>01 July 2025</h3>
+            </div>
+            <div class="policy-img">
+              <img src="../../../assets/policy/news3.jpg" alt="P1">
+            </div>
+            <h2>OnePlus Nord 5 in for review</h2>
+            <p>Today we have with us the new OnePlus Nord 5, which is the latest mainline entry in the company’s
+              affordable series
+              of smartphones. The phone is set to launch next week alongside the Nord CE5 and today we can share a
+              sneak
+              peek at
+              the device with an unboxing.</p>
+            <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="partners">
+  <div class="containers">
+    <owl-carousel-o [options]="customOptions">
+      @for (partnersArrays of partnersArray; track partnersArrays) {
+      <ng-template carouselSlide>
+        <img src="{{ partnersArrays.imgName }}" alt="Partner" style="width: 120px;">
+      </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+
+
+<section class="footer-top">
+  <div class="containers">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="footer-to-menu">
+          <ul>
+            <li>
+              <i class="fa fa-home"></i>
+              <span class="heading">Address: </span>
+              <span class="address">10 Rue Saint Augustin, Tunis 1002</span>
+            </li>
+            <li>
+              <i class="fa fa-envelope"></i>
+              <span class="heading">Mail Us:</span>
+              <span class="email">
+                <a href="mailto:ecommerce&#64;gmail.com">ecommerce&#64;gmail.com</a>
+              </span>
+            </li>
+            <li>
+              <i class="fa fa-phone"></i>
+              <span class="heading">Phone:</span>
+              <span class="number">
+                <a href="tel:+216 22 22 22 22"> +216 22 22 22 22</a>
+              </span>
+            </li>
+            <li>
+              <a href="">
+                <img src="../../../assets/payment/cards.png" alt="Payment" style="max-width: 180px; height: auto;">
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="footer-all-menu">
+          <h2>My Account</h2>
+          <ul>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Information</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Order History</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">My Wishlist</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Privacy Policy</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Site Map</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="footer-all-menu">
+          <h2>Information</h2>
+          <ul>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Cart</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Product Support</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">PC Setup & Support</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Services</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Extended Services Plans</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="footer-all-menu">
+          <h2>Our services</h2>
+          <ul>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">About</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Shipping Guide</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Store Location</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Affiliates</a>
+            </li>
+            <li>
+              <i class="fa fa-circle"></i>
+              <a href="">Customer Point Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<section class="footer-middle">
+  <div class="containers">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Sign up for our exclusive Newsletter</h2>
+      </div>
+      <div class="col-md-4">
+        <input type="email" class="input" placeholder="Email">
+        <button type="button" class="btn">
+          <i class="fa fa-location-arrow"></i>
+        </button>
+      </div>
+      <div class="col-md-4">
+        <div class="social text-center">
+          <ul>
+            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+            <li><a href=""><i class="fa fa-pinterest"></i></a></li>
+            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="containers text-center">
+    <p>&#64; 2025 This website Designed by <a href="">Creative Developers</a> All Rights Reserved</p>
+  </div>
+</footer>
