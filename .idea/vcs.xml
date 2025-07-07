@@ -2,6 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/front-ecommerce" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/odm-auth" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/odm-finance" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/odm-getway" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/odm-payment" vcs="Git" />
   </component>
 </project>
