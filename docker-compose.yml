@@ -9,9 +9,25 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "5433:5433"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+
+  consul:
+    image: consul:1.15
+    container_name: consul
+    restart: always
+    ports:
+      - "8500:8500" # Consul UI
+    command: agent -dev -client=0.0.0.0
+
+  mail-dev:
+    container_name: ms-mail-dev
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
 
   odm-auth:
     build: ./odm-auth
@@ -19,7 +35,7 @@ services:
     ports:
       - "8090:8090"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/payment_db
     depends_on:
       - postgres
 
@@ -29,7 +45,7 @@ services:
     ports:
       - "8091:8091"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/payment_db
     depends_on:
       - postgres
 
@@ -39,19 +55,23 @@ services:
     ports:
       - "8082:8082"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/payment_db
     depends_on:
       - postgres
 
   odm-gateway:
-    build: ./odm-getway
+    build: ./odm-gateway
     container_name: odm-gateway
     ports:
       - "8080:8080"
+    environment:
+      SPRING_CLOUD_CONSUL_HOST: consul
     depends_on:
       - odm-auth
       - odm-finance
       - odm-payment
+      - consul
+
 
 volumes:
   postgres_data:

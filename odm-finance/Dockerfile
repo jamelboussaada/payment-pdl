@@ -6,7 +6,7 @@ WORKDIR /workspace/app
 
 # Cache Maven dependencies
 COPY mvnw pom.xml ./
-COPY .mvn/ .mvn
+COPY .mvn .mvn
 RUN ./mvnw dependency:go-offline -B
 
 # Build application

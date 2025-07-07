@@ -5,7 +5,7 @@ FROM eclipse-temurin:24 AS build
 WORKDIR /app
 
 # Copy the Maven wrapper and the POM file
-COPY .mvn/ .mvn
+COPY .mvn .mvn
 COPY mvnw pom.xml ./
 
 # Download Maven dependencies
