@@ -31,3 +31,214 @@ header{
 .login:hover{
   background: rgb(84, 51, 235);
 }
+
+/* === Global styles === */
+
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* === Header === */
+
+.navbar a {
+  margin-left: 20px;
+  font-weight: 500;
+  color: #e5e7eb;
+  transition: color 0.3s ease;
+}
+
+/* === Section Pagetop === */
+.section-pagetop {
+  background: #f1f5f9;
+  padding: 30px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.section-pagetop h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* === Section Content === */
+.section-content {
+  padding: 40px 0;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.table-shopping-cart {
+  width: 100%;
+}
+
+.table-shopping-cart td {
+  vertical-align: middle;
+  padding: 15px 10px;
+}
+
+.table-shopping-cart .img-sm {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.itemside {
+  display: flex;
+  align-items: center;
+}
+
+.itemside .info {
+  margin-left: 15px;
+}
+
+.price-wrap var {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.price-wrap small {
+  display: block;
+  color: #6b7280;
+}
+
+.btn {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.btn-light {
+  background: #f3f4f6;
+  color: #111;
+}
+
+.btn-light:hover {
+  background: #e5e7eb;
+}
+
+.btn-primary {
+  background: #111827;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #1f2937;
+}
+
+/* === Aside Panel === */
+aside .card-body {
+  padding: 20px;
+}
+
+.dlist-align {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.h5 {
+  font-size: 20px;
+}
+
+/* === Coupon input === */
+.input-group input {
+  border-radius: 4px 0 0 4px;
+}
+
+.input-group .btn {
+  border-radius: 0 4px 4px 0;
+}
+
+/* === Alert Message === */
+.alert-success {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+/* === Payment Section === */
+.section-name {
+  background: #f3f4f6;
+  padding: 40px 0;
+  margin-top: 30px;
+}
+
+.section-name h6 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* === Footer === */
+footer {
+  background: #111827;
+  padding: 20px 0;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.containers {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .table-shopping-cart td {
+    display: block;
+    text-align: left;
+  }
+
+  .table-shopping-cart td.text-right {
+    text-align: left !important;
+    margin-top: 10px;
+  }
+
+  .itemside {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .itemside .info {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .section-pagetop h2 {
+    font-size: 22px;
+  }
+}
+
