@@ -242,3 +242,31 @@ footer a:hover {
   }
 }
 
+.btn-row-fixed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0; /* optional vertical space */
+}
+
+.btn-row-fixed a {
+  white-space: nowrap;
+  padding: 8px 20px;  /* adjust button size */
+}
+
+/* Optional: more space visually */
+.btn-row-fixed a.btn-light {
+  margin-right: auto;
+}
+
+.btn-row-fixed a.btn-primary {
+  margin-left: auto;
+}
+.quantity-input {
+  width: 80px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+}

@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-8 text-right">
         <nav class="navbar">
-            <a href="#">Home</a>
+            <a routerLink="/home-page">Home</a>
             <a href="#">Favorite</a>
             <a routerLink="/cart"  class="cart">Cart</a>
             <a href="#">Contact</a>
@@ -58,12 +58,8 @@
             </figure>
         </td>
         <td> 
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>	
-                <option>3</option>	
-                <option>4</option>	
-            </select> 
+            <input type="number" class="form-control quantity-input" value="1" min="1" max="10">
+
         </td>
         <td> 
             <div class="price-wrap"> 
@@ -87,12 +83,8 @@
             </figure>
         </td>
         <td> 
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>	
-                <option>3</option>	
-                <option>4</option>	
-            </select> 
+            <input type="number" class="form-control quantity-input" value="1" min="1" max="10">
+
         </td>
         <td> 
             <div class="price-wrap"> 
@@ -116,11 +108,8 @@
             </figure>
         </td>
         <td> 
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>	
-                <option>3</option>	
-            </select> 
+            <input type="number" class="form-control quantity-input" value="1" min="1" max="10">
+
         </td>
         <td> 
             <div class="price-wrap"> 
@@ -136,10 +125,15 @@
     </tbody>
     </table>
     
-    <div class="card-body border-top">
-        <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-        <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
-    </div>	
+<div class="card-body border-top">
+  <div class="btn-row-fixed">
+    <a routerLink="/home-page" class="btn btn-light">
+      <i class="fa fa-chevron-left"></i> Continue shopping
+    </a>
+    <a routerLink="/purchase" class="btn btn-primary">Make Purchase <i class="fa fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
 
 
     </div> <!-- card.// -->
@@ -181,7 +175,7 @@
                         </dl>
                         <hr>
                         <p class="text-center mb-3">
-                            <img src="assets/payment/cards.png" >
+                            <img src="assets/payment/cards.png" height="50">
                         </p>
                         
                 </div> <!-- card-body.// -->
