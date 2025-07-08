@@ -3,10 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Product } from '../../product.module';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
+
+// Temporary Product interface definition (replace with real one if available)
+export interface Product {
+  id?: number;
+  name?: string;
+  price?: number;
+  // Add other fields as needed
+}
 
 @Component({
   selector: 'app-home-page',
