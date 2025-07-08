@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {CartComponent} from './pages/cart/cart.component';
-import {PurchaseComponent} from './pages/purchase/purchase.component';
+import {SuccesspurchaseComponent} from './pages/successpurchase/successpurchase.component';
+import {FailedpurchaseComponent} from './pages/failedpurchase/failedpurchase.component';
 
 export const routes: Routes = [
 
@@ -30,9 +31,15 @@ export const routes: Routes = [
   },
 
   {
-    path:'purchase',
-    component: PurchaseComponent
+    path:'successpurchase',
+    component: SuccesspurchaseComponent
 
-  }  
+  },
+
+  {
+    path:'failedpurchase',
+    component: FailedpurchaseComponent
+
+  }   
 
 ];

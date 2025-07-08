@@ -10,7 +10,39 @@
   width: 90%;
   margin: 0 auto;
 }
-
+header{
+  background: #111;
+  color: #777;
+  padding: 15px 0;
+}
+.logo {
+  color: #fff;
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: default;
+}
+.navbar a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  margin-left: 35px;
+  transition: 0.3s;
+}
+.navbar a:hover {
+  color: rgb(84, 51, 235);
+}
+.login{
+  background: #777;
+  padding: 5px 28px;
+  margin-left: 12px;
+  border-radius: 4px;
+  color: #fff!important;
+  transition: .3s all ease;
+}
+.login:hover{
+  background: rgb(84, 51, 235);
+}
 .banner img {
     height: 500px;
     object-fit: cover;

@@ -5,11 +5,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Product } from '../../product.module';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../footer/footer.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, CarouselModule, RouterModule],
+  imports: [CommonModule, CarouselModule, RouterModule, FooterComponent, NavbarComponent],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
