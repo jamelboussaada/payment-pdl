@@ -1,1 +1,23 @@
-<p>favourite works!</p>
+<app-navbar></app-navbar>
+
+<div class="favorite-container">
+  <h2>My Favorites</h2>
+  <div *ngIf="favorites && favorites.length; else noFavorites" class="favorites-grid">
+    <div class="favorite-card" *ngFor="let item of favorites">
+      <img [src]="item.image" alt="{{item.title}}" />
+      <div class="favorite-info">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <button (click)="removeFavorite(item)">Remove</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #noFavorites>
+    <div class="no-favorites">
+      <p>You have no favorites yet.</p>
+      <img src="assets/dislike.png" alt="No Favorites" />
+    </div>
+  </ng-template>
+</div>
+
+<app-footer></app-footer>

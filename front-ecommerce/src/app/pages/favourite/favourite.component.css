@@ -1,0 +1,126 @@
+.favorite-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 16px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 32px;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.favorite-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorite-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+
+.favorite-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.favorite-info {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorite-info h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.favorite-info p {
+  color: #555;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.favorite-info button {
+  align-self: flex-end;
+  background: #ff4757;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.favorite-info button:hover {
+  background: #ff6b81;
+}
+
+.no-favorites {
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
+}
+
+.no-favorites img {
+  width: 180px;
+  margin-top: 20px;
+}
+
+.add-favorite-form {
+  margin-top: 40px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-favorite-form h3 {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.add-favorite-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e90ff;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-favorite-form button:hover {
+  background-color: #4682b4;
+}
