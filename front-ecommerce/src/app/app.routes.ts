@@ -4,7 +4,7 @@ import { FavouriteComponent } from './pages/favourite/favourite.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SuccessPurchaseComponent } from './pages/successpurchase/successpurchase.component';
-import { FailedpurchaseComponent } from './pages/failedpurchase/failedpurchase.component';
+import { FailedPurchaseComponent } from './pages/failedpurchase/failedpurchase.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,5 +13,5 @@ export const routes: Routes = [
     { path: 'favourite', component: FavouriteComponent },
     { path: 'login', component: LoginComponent },
     { path: 'success', component: SuccessPurchaseComponent },
-    { path: 'fail', component: FailedpurchaseComponent },
+    { path: 'fail', component: FailedPurchaseComponent },
 ];

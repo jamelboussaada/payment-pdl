@@ -1,5 +1,36 @@
 <app-navbar></app-navbar>
 
-<p>failedpurchase works!</p>
+<div class="failed-purchase-container">
+  <div class="failed-purchase-card">
+    <div class="icon-container">
+      <i class="fas fa-times-circle error-icon"></i>
+    </div>
+    <div class="content">
+      <h3 class="title">Oops! Purchase Failed</h3>
+      <p class="description">We're sorry, something went wrong during your purchase. Please try again later or check
+        your payment details.</p>
+      <div class="details">
+        <p><strong>Transaction ID:</strong> abc123xyz</p>
+        <p><strong>Error Code:</strong> 503</p>
+      </div>
+      <div class="retry-btn-container">
+        <button class="retry-button" (click)="retryPurchase()">Retry Purchase</button>
+      </div>
+    </div>
+    <div>
+    <div class="content">
+      <span>Or </span>
+    </div>
+    <div class="card-footer">
+      <!-- <a routerLink="/home" class="back-to-home" (click)="goHome()">  Go to Home</a> -->
+      <button class="btn btn-home" (click)="goHome()">Go to Home</button>
+    </div>
+    </div>
+  </div>
+
+
+</div>
+
+
 
 <app-footer></app-footer>

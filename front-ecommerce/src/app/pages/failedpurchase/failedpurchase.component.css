@@ -1,0 +1,137 @@
+/* Container that centers the card */
+.failed-purchase-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f9f9f9;
+}
+
+.failed-purchase-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+}
+
+.error-icon {
+  font-size: 50px;
+  color: #f44336;
+}
+
+.content {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.description {
+  font-size: 16px;
+  color: #777;
+  margin: 10px 0 20px;
+}
+
+.details {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.retry-btn-container {
+  margin-top: 20px;
+}
+
+.retry-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.retry-button:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 600px) {
+  .failed-purchase-card {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .retry-button {
+    font-size: 14px;
+  }
+}
+
+
+
+/* Base Button Style */
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Specific styling for btn-home */
+.btn-home {
+  background-color: #4CAF50; /* Green background */
+  color: #fff;               /* White text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+.btn-home:hover {
+  background-color: #45a049;  /* Darker green when hovered */
+  transform: translateY(-2px); /* Slightly raise the button on hover */
+}
+
+.btn-home:active {
+  background-color: #388e3c;  /* Even darker green on click */
+  transform: translateY(0);   /* Return to normal position */
+}
+
+/* Focus state for accessibility */
+.btn-home:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Soft green glow on focus */
+}
+
+/* Responsive button styling */
+@media (max-width: 600px) {
+  .btn-home {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
