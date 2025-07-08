@@ -155,4 +155,5 @@ export class HomePageComponent implements OnInit {
   public changeImage8(event: Event): void {
     this.url8 = (event.target as HTMLImageElement).src;
   }
+  
 }

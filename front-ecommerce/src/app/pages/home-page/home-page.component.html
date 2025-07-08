@@ -1,9 +1,105 @@
-<!-- section-header.// -->
+<!-- Navbar Section -->
 <app-navbar></app-navbar>
-<!-- section-header.// -->
 
-
+<!-- Banner Section -->
 <section class="banner">
+  <owl-carousel-o [options]="bannerSlide">
+    <ng-template carouselSlide>
+      <img src="../../../assets/testimonial/m6.jpg" alt="Banner" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img src="../../../assets/testimonial/m4.png" alt="Banner" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img src="../../../assets/testimonial/m7.jpg" alt="Banner" />
+    </ng-template>
+  </owl-carousel-o>
+</section>
+
+<!-- Top Sellers Section -->
+<section class="top-sellers">
+  <div class="containers">
+    <div class="section-title">
+      <h1><span>Top</span> Sellers</h1>
+    </div>
+    <div class="products">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img [src]="product.imageUrl" alt="{{ product.nom }}" />
+        </div>
+        <div class="product-info">
+          <h3>{{ product.nom }}</h3>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-alt"></i>
+          </div>
+          <p class="price">{{ product.price }} DT</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Section -->
+<section class="news">
+  <div class="containers text-center">
+    <h2>Latest Tech News</h2>
+    <p>Stay updated with the latest in tech and gaming.</p>
+    <!-- <a href="#" class="btn-news">See All News</a> -->
+  </div>
+</section>
+
+<!-- Policy Section (Carousel) -->
+<section class="policy-carousel">
+  <div class="containers">
+    <owl-carousel-o [options]="policyOptions">
+      <ng-template carouselSlide>
+        <div class="policy-card">
+          <div class="date">
+            <h3>01 July 2025</h3>
+          </div>
+          <div class="policy-img">
+            <img src="../../../assets/policy/news1.jpg" alt="P1" />
+          </div>
+          <h2>OnePlus Nord 5 Review</h2>
+          <p>We take a deep dive into the latest OnePlus Nord 5 smartphone.</p>
+          <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="policy-card">
+          <div class="date">
+            <h3>02 July 2025</h3>
+          </div>
+          <div class="policy-img">
+            <img src="../../../assets/policy/news2.jpg" alt="P2" />
+          </div>
+          <h2>New Gaming Laptop Unboxing</h2>
+          <p>Get an exclusive look at the new gaming laptop from XYZ brand.</p>
+          <a href="" class="read-more">Read More <i class="fa fa-caret-right"></i></a>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<app-footer></app-footer>
+
+
+
+
+
+
+<!-- old header section-header.// -->
+<!-- <app-navbar></app-navbar> -->
+
+
+<!-- <section class="banner">
       <owl-carousel-o [options]="bannerSlide">
          <ng-template carouselSlide>
           <img src="../../../assets/testimonial/m6.jpg" alt="Banner">
@@ -17,7 +113,7 @@
 
          </ng-template>
       </owl-carousel-o>
-</section>
+</section> -->
 
 
 <!--<section class="testimonial">
@@ -365,7 +461,7 @@
   </div>
 </section>-->
 
-<section class="bg-color">
+<!-- <section class="bg-color">
   <div class="containers">
     <div class="title">
       <h1><span>Top</span> Sellers</h1>
@@ -662,6 +758,7 @@
 </section>
 
 
-<!-- section-footer.// -->
-<app-footer></app-footer>
-<!-- section-footer.// -->
+
+<app-footer></app-footer> -->
+
+
