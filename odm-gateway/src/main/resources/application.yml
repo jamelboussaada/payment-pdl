@@ -22,6 +22,12 @@ spring:
                 - Path= /api/produits/**,/api/payments/**,/api/pdf/**,/api/stripe/**
               filters:
                 - JwtAuthenticationFilter
+            - id: odm-payment
+              uri: http://odm-payment:8099
+              predicates:
+                - Path= /api/v1/payment/**
+              filters:
+                - JwtAuthenticationFilter
 
 server:
   port: 8080
