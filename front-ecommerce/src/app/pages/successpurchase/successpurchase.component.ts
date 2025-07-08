@@ -10,4 +10,4 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: './successpurchase.component.html',
   styleUrl: './successpurchase.component.css'
 })
-export class SuccesspurchaseComponent {}
+export class SuccessPurchaseComponent {}

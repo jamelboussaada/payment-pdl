@@ -12,8 +12,10 @@ export interface Product {
   id?: number;
   name?: string;
   price?: number;
-  // Add other fields as needed
+  imageUrl?: string;  // Add this property
+  nom?: string;       // Add this property if required
 }
+
 
 @Component({
   selector: 'app-home-page',

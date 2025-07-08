@@ -3,7 +3,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { FavouriteComponent } from './pages/favourite/favourite.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SuccesspurchaseComponent } from './pages/successpurchase/successpurchase.component';
+import { SuccessPurchaseComponent } from './pages/successpurchase/successpurchase.component';
 import { FailedpurchaseComponent } from './pages/failedpurchase/failedpurchase.component';
 
 export const routes: Routes = [
@@ -12,6 +12,6 @@ export const routes: Routes = [
     { path: 'cart', component: CartComponent },
     { path: 'favourite', component: FavouriteComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'success', component: SuccesspurchaseComponent },
+    { path: 'success', component: SuccessPurchaseComponent },
     { path: 'fail', component: FailedpurchaseComponent },
 ];
