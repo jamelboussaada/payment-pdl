@@ -11,19 +11,19 @@ spring:
               enabled: true
           routes:
             - id: odm-auth
-              uri: http://odm-auth:8090
+              uri: http://localhost:8090
               predicates:
                 - Path= /auth/**,/test/**,
               filters:
                 - JwtAuthenticationFilter
             - id: odm-finance
-              uri: http://odm-finance:8091
+              uri: http://localhost:8091
               predicates:
                 - Path= /api/produits/**,/api/payments/**,/api/pdf/**,/api/stripe/**
               filters:
                 - JwtAuthenticationFilter
             - id: odm-payment
-              uri: http://odm-payment:8082
+              uri: http://localhost:8082
               predicates:
                 - Path= /api/v1/payment/**
               filters:
