@@ -17,8 +17,8 @@ public class PaymentStripeController {
         SessionCreateParams params =
                 SessionCreateParams.builder()
                         .setMode(SessionCreateParams.Mode.PAYMENT)
-                        .setSuccessUrl("https://www.google.com/")
-                        .setCancelUrl("https://www.youtube.com/")
+                        .setSuccessUrl("https://localhost:4200/successpurchase")
+                        .setCancelUrl("https://localhost:4200/failedpurchase")
                         .addLineItem(
                                 SessionCreateParams.LineItem.builder()
                                         .setQuantity(1L)

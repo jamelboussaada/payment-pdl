@@ -1,16 +1,18 @@
 package odm_finance.finance.controller;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import odm_finance.finance.model.ApiResponse;
-import odm_finance.finance.model.InvoiceData;
-import odm_finance.finance.model.ProduitAchat;
+import odm_finance.finance.model.*;
+import odm_finance.finance.service.CommandeService;
 import odm_finance.finance.service.InvoiceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
@@ -23,11 +25,19 @@ public class PdfController {
 
     private final InvoiceService invoiceService;
 
+    @Autowired
+    private CommandeService commandeService;
+
     /**
      * Génère un PDF et retourne une réponse JSON avec le PDF encodé en base64
      */
     @PostMapping("/generate")
-    public ResponseEntity<ApiResponse> generatePdf(@RequestBody List<ProduitAchat> produitsAchat) {
+    public ResponseEntity<ApiResponse> generatePdf(@RequestBody List<ProduitAchat> produitsAchat,
+                                                   @RequestHeader String userName,
+                                                   @RequestHeader String userLastName,
+                                                   @RequestHeader String userPhone,
+                                                   @RequestHeader String userEmail,
+                                                   @RequestHeader String userAddress) {
         try {
             // Validation des données d'entrée
             if (produitsAchat == null || produitsAchat.isEmpty()) {
@@ -36,8 +46,10 @@ public class PdfController {
                 );
             }
 
+            InvoiceData.Client client = new InvoiceData.Client(
+                    userName + " " + userLastName, userAddress, userEmail, userPhone);
             // Créer les données de facture
-            InvoiceData invoiceData = createInvoiceData(produitsAchat);
+            InvoiceData invoiceData = createInvoiceData(produitsAchat,client);
             
             // Générer le PDF
             byte[] pdfBytes = invoiceService.generateInvoicePdf(invoiceData);
@@ -60,26 +72,41 @@ public class PdfController {
      * Génère un PDF et retourne directement le fichier pour téléchargement
      */
     @PostMapping("/download")
-    public ResponseEntity<byte[]> downloadPdf(@RequestBody List<ProduitAchat> produitsAchat) {
+    public ResponseEntity<byte[]> downloadPdf(@RequestBody List<ProduitAchat> produitsAchat,
+                                              @RequestHeader String userName,
+                                              @RequestHeader String userLastName,
+                                              @RequestHeader String userPhone,
+                                              @RequestHeader String userEmail,
+                                              @RequestHeader String userAddress
+    ) {
         try {
             // Validation des données d'entrée
             if (produitsAchat == null || produitsAchat.isEmpty()) {
                 return ResponseEntity.badRequest().build();
             }
 
+            InvoiceData.Client client = new InvoiceData.Client(
+                    userName + " " + userLastName, userAddress, userEmail, userPhone);
+
             // Créer les données de facture
-            InvoiceData invoiceData = createInvoiceData(produitsAchat);
+            InvoiceData invoiceData = createInvoiceData(produitsAchat, client);
             
             // Générer le PDF
             byte[] pdfBytes = invoiceService.generateInvoicePdf(invoiceData);
-            
+
+            try {
+                commandeService.saveCommande(userName, userLastName, userEmail, userPhone, userAddress, produitsAchat);
+            } catch (Exception e) {
+                System.err.println("Failed to save commande: " + e.getMessage());
+            }
             // Configurer les en-têtes pour le téléchargement
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDispositionFormData("attachment", 
                 "facture-" + invoiceData.getNumber() + ".pdf");
             headers.setContentLength(pdfBytes.length);
-            
+
+
             return ResponseEntity.ok()
                     .headers(headers)
                     .body(pdfBytes);
@@ -93,13 +120,21 @@ public class PdfController {
      * Endpoint pour prévisualiser le PDF dans le navigateur
      */
     @PostMapping("/preview")
-    public ResponseEntity<byte[]> previewPdf(@RequestBody List<ProduitAchat> produitsAchat) {
+    public ResponseEntity<byte[]> previewPdf(@RequestBody List<ProduitAchat> produitsAchat ,
+                                             @RequestHeader String userName,
+                                             @RequestHeader String userLastName,
+                                             @RequestHeader String userPhone,
+                                             @RequestHeader String userEmail,
+                                             @RequestHeader String userAddress) {
         try {
             if (produitsAchat == null || produitsAchat.isEmpty()) {
                 return ResponseEntity.badRequest().build();
             }
 
-            InvoiceData invoiceData = createInvoiceData(produitsAchat);
+            InvoiceData.Client client = new InvoiceData.Client(
+                    userName + " " + userLastName, userAddress, userEmail, userPhone);
+
+            InvoiceData invoiceData = createInvoiceData(produitsAchat,client);
             byte[] pdfBytes = invoiceService.generateInvoicePdf(invoiceData);
             
             HttpHeaders headers = new HttpHeaders();
@@ -119,7 +154,7 @@ public class PdfController {
     /**
      * Crée les données de facture à partir de la liste des produits
      */
-    private InvoiceData createInvoiceData(List<ProduitAchat> produitsAchat) {
+    private InvoiceData createInvoiceData(List<ProduitAchat> produitsAchat , InvoiceData.Client client) {
         // Calculer les totaux
         double subtotal = produitsAchat.stream()
                 .mapToDouble(ProduitAchat::getTotal)
@@ -139,14 +174,7 @@ public class PdfController {
                 ))
                 .collect(Collectors.toList());
         
-        // Créer les données client (remplacer par les vraies données)
-        InvoiceData.Client client = new InvoiceData.Client(
-            "Client Exemple",
-            "123 Rue Exemple, 75000 Paris, France",
-            "client@exemple.com",
-            "01 23 45 67 89"
-        );
-        
+
         // Créer la facture
         return new InvoiceData(
             generateInvoiceNumber(),
@@ -168,4 +196,5 @@ public class PdfController {
         String uuid = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         return "INV-" + year + "-" + uuid;
     }
+
 }

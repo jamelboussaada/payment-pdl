@@ -23,7 +23,7 @@ spring:
               filters:
                 - JwtAuthenticationFilter
             - id: odm-payment
-              uri: http://odm-payment:8099
+              uri: http://odm-payment:8082
               predicates:
                 - Path= /api/v1/payment/**
               filters:
