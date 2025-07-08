@@ -2,7 +2,29 @@
 <app-navbar></app-navbar>
 <!-- section-header.// -->
 
-<p>successpurchase works!</p>
+<div class="success-card-container">
+  <div class="success-card">
+    <div class="success-header">
+      <h2>Payment Successful!</h2>
+    </div>
+
+    <div class="success-body">
+      <p class="success-message">Your payment has been processed successfully. Thank you for your purchase!</p>
+      <div class="payment-details">
+        <p><strong>Payment ID:</strong> {{ paymentDetails?.id }}</p>
+        <p><strong>Amount Paid:</strong> ${{ paymentDetails?.amount }}</p>
+        <p><strong>Date:</strong> {{ paymentDetails?.date }}</p>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn btn-home" (click)="goHome()">Go to Home</button>
+      <button class="btn btn-print" (click)="printReceipt()">Print Receipt</button>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- section-footer.// -->
 <app-footer></app-footer>

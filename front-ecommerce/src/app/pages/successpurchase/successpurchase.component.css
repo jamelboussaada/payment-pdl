@@ -1,0 +1,99 @@
+.success-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f4f7fc;
+}
+
+.success-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.success-header h2 {
+  font-size: 1.8rem;
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.success-body {
+  margin-bottom: 2rem;
+}
+
+.success-message {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.payment-details {
+  text-align: left;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.payment-details p {
+  margin: 0.5rem 0;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-home {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-home:hover {
+  background-color: #0056b3;
+}
+
+.btn-print {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-print:hover {
+  background-color: #218838;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .success-card {
+    padding: 1.5rem;
+  }
+
+  .success-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .success-message {
+    font-size: 1rem;
+  }
+
+  .payment-details p {
+    font-size: 0.9rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
