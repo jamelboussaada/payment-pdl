@@ -27,7 +27,17 @@
                 "output": "/"
               },
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "C:/Users/JameleddineBOUSSADA/OneDrive - TEAMWILL CONSULTING/Bureau/pfa/payment-pdl/invoices",
+                "output": "/invoices/"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

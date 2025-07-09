@@ -41,17 +41,17 @@ export class SuccessPurchaseComponent {
       {
         "nom": "clavier",
         "prix": 25.25,
-        "quantité": 1
+        "quantite": 1
       },
       {
         "nom": "pc portable lenovo ",
         "prix": 25.25,
-        "quantité": 1
+        "quantite": 1
       },
       {
         "nom": "souris msi",
         "prix": 25.25,
-        "quantité": 1
+        "quantite": 1
       }
     ];
     this.pdfOperationService.downloadPdf(payload);

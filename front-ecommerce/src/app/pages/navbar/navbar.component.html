@@ -11,6 +11,7 @@
             <a routerLink="/home" routerLinkActive="active" (click)="log()">Home</a>
             <a routerLink="/favourite" routerLinkActive="active">Favorite</a>
             <a routerLink="/cart" routerLinkActive="active" class="cart">Cart</a>
+            <a routerLink="/invoices" routerLinkActive="active">Invoices</a>
             <!-- <a routerLink="/Contact" routerLinkActive="active">Contact</a> -->
             <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active" class="login">Login</a>
             <a *ngIf="isLoggedIn()" (click)="logout()" class="login">Logout</a>
