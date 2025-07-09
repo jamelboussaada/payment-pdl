@@ -1,12 +1,15 @@
 package odm_finance.finance.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import odm_finance.finance.model.ApiResponse;
 import odm_finance.finance.model.InvoiceData;
 import odm_finance.finance.model.PaymentData;
 import odm_finance.finance.model.ProduitAchat;
+import odm_finance.finance.service.InvoiceService;
 import odm_finance.finance.service.PaymentNotificationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,9 @@ import java.util.stream.Collectors;
 public class PaymentController {
 
     private final PaymentNotificationService paymentNotificationService;
+
+    @Autowired
+    InvoiceService invoiceService;
 
     /**
      * Traite un paiement et envoie la confirmation par email
@@ -40,7 +46,7 @@ public class PaymentController {
             InvoiceData invoiceData = createInvoiceData(request.getProduitsAchat());
 
             // Créer les données de paiement
-            PaymentData paymentData = createPaymentData(request, invoiceData);
+            PaymentData paymentData = invoiceService.createPaymentData(request, invoiceData);
 
             // Envoyer la notification de paiement
             paymentNotificationService.sendPaymentConfirmation(paymentData, invoiceData);
@@ -116,18 +122,7 @@ public class PaymentController {
         );
     }
 
-    private PaymentData createPaymentData(PaymentRequest request, InvoiceData invoiceData) {
-        return new PaymentData(
-                generateTransactionId(),
-                invoiceData.getNumber(),
-                invoiceData.getTotal(),
-                request.getPaymentMethod(),
-                LocalDateTime.now(),
-                request.getClientName(),
-                request.getClientEmail(),
-                "COMPLETED"
-        );
-    }
+
 
     private String generateInvoiceNumber() {
         String year = String.valueOf(LocalDate.now().getYear());
@@ -135,12 +130,11 @@ public class PaymentController {
         return "INV-" + year + "-" + uuid;
     }
 
-    private String generateTransactionId() {
-        return "TXN-" + UUID.randomUUID().toString().substring(0, 12).toUpperCase();
-    }
+
 
     // Classe interne pour la requête de paiement
     @lombok.Data
+    @AllArgsConstructor
     public static class PaymentRequest {
         @jakarta.validation.constraints.NotBlank
         private String clientName;
@@ -155,5 +149,7 @@ public class PaymentController {
         @jakarta.validation.Valid
         @jakarta.validation.constraints.NotEmpty
         private List<ProduitAchat> produitsAchat;
+
+
     }
 }

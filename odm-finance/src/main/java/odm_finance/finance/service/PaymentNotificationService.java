@@ -123,7 +123,7 @@ public class PaymentNotificationService {
         // Données de l'entreprise
         variables.put("companyName", "ODM Finance");
         variables.put("supportEmail", "support@odm-finance.com");
-        variables.put("websiteUrl", "https://www.odm-finance.com");
+        variables.put("websiteUrl", "http://localhost:4200/");
 
         return variables;
     }
