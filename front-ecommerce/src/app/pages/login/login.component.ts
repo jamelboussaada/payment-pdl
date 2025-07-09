@@ -18,17 +18,17 @@ export class LoginComponent {
   router = inject(Router);
 
   //api
-  customerObj: any ={
-    "name": "",
-    "lastName": "",
-    "email": "",
-    "password" : "",
-    "address" :  "",
-    "phone" : ""
-  }
+  registerForm: FormGroup = new FormGroup({
+    name: new FormControl(""),
+    lastName: new FormControl(""),
+    email: new FormControl(""),
+    password: new FormControl(""),
+    address: new FormControl(""),
+    phone: new FormControl("")
+  });
 
   loginForm: FormGroup = new FormGroup({
-    userName: new FormControl(""),
+    email: new FormControl(""),
     password: new FormControl("")
   })
 
@@ -40,7 +40,7 @@ export class LoginComponent {
     return this.isRegisterView;
   }
   onRegister(){
-    this.authService.signup(this.customerObj).subscribe((res:any)=> {
+    this.authService.signup(this.registerForm.value).subscribe((res:any)=> {
       if(res.result){
         console.log("Customer Registered Successfully")
       }else{
@@ -53,20 +53,21 @@ export class LoginComponent {
 
   //login api
   onLogin(){
-    debugger;
+
     const formValue = this.loginForm.value;
     this.authService.signin(formValue).subscribe((res:any)=> {
-      debugger;
-      if(res.result){
-        sessionStorage.setItem("ecommerceUser", JSON.stringify({"token": res.data}));
-        this.router.navigateByUrl("home-page");
+      alert('login success')
+      console.log(res)
+      if(res){
+        sessionStorage.setItem("ecommerceUser", JSON.stringify({"token": res}));
+        this.router.navigateByUrl("home");
 
       }else{
-        alert(res.message)
+        console.log(res)
       }
 
     }, error => {
-      alert("Network Error")
+      console.log("Network Error")
 
     })
   }
