@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SuccessPurchaseComponent } from './pages/successpurchase/successpurchase.component';
 import { FailedPurchaseComponent } from './pages/failedpurchase/failedpurchase.component';
+import { ProductDescriptionComponent } from './pages/product-description/product-description.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'success', component: SuccessPurchaseComponent },
     { path: 'fail', component: FailedPurchaseComponent },
+    { path:'product/:id', component: ProductDescriptionComponent},
 ];

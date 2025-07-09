@@ -16,28 +16,40 @@
   </owl-carousel-o>
 </section>
 
-<!-- Top Sellers Section -->
-<section class="top-sellers">
+<section class="bg-color">
   <div class="containers">
-    <div class="section-title">
+    <div class="title">
       <h1><span>Top</span> Sellers</h1>
     </div>
-    <div class="products">
-      <div class="product-card" *ngFor="let product of products">
-        <div class="product-image">
-          <img [src]="product.imageUrl" alt="{{ product.nom }}" />
-        </div>
-        <div class="product-info">
-          <h3>{{ product.nom }}</h3>
-          <div class="rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-alt"></i>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let product of products">
+        <div class="card" (click)="viewProductDetails(product.id)">
+          <div class="card-main">
+            <div class="image">
+              <img [src]="product.imageUrl" [alt]="product.nom" />
+            </div>
+            <div class="cart-line">
+              <div class="cart-item">
+                <ul>
+                  <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                  <li><a href=""><i class="fa fa-heart"></i></a></li>
+                  <li><a href=""><i class="fa fa-search"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p class="price">{{ product.price }} DT</p>
-          <button class="add-to-cart">Add to Cart</button>
+          <div class="content">
+            <h3>{{ product.name }}</h3>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+            </div>
+            <p class="money">{{ product.price }} DT</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
@@ -735,7 +747,7 @@
       <div class="col-md-4">
         <h2>Sign up for our exclusive Newsletter</h2>
       </div>
-<div class="col-md-4 col-sm-12 col-xs-12 d-flex"> 
+<div class="col-md-4 col-sm-12 col-xs-12 d-flex">
   <input type="email" class="input" placeholder="Email">
   <button type="button" class="btn btn-primary">
     <i class="fa fa-location-arrow"></i>

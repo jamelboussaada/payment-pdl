@@ -1,0 +1,114 @@
+[
+
+  {
+
+    "id": 1,
+
+    "name": "ASUS Zenbook",
+
+    "nom": "Pc Portable ASUS Zenbook Duo UX8406CA / Ultra 9 285H / 32 Go / 1 To SSD / Windows 11 / Gris Avec Sac Asus/ Référence : UX8406CA-PZ043W-2Y / Écran 14.0 3K WUXGA (2880 x 1800), OLED, HDR, 120 Hz - Processeur Intel Core Ultra 9 285H, (jusqu'à 5.4 GHz, 24 Mo de mémoire cache) - Mémoire 32 Go LPDDR5X - Disque SSD M.2 NVMe 1 To - Carte graphique Intel Arc Graphics - 2x Thunderbolt 4 - 1x prise audio combo 3.5 mm - 1x HDMI 2.1 TMDS - 1x USB 3.2 - Clavier souple, 1.4mm Key-travel, Pavé tactile de précision - Caméra FHD avec fonction IR pour supporter - Microphone intégré - Wi-Fi 6E - Bluetooth 5.3 - Windows 11 - Couleur Encrier gris - Garantie 2 ans Avec Sac à Dos Asus",
+
+    "price": 6999.00,
+
+    "imageUrl": "assets/img1.jpg"
+
+  },
+
+  {
+
+    "id": 2,
+
+    "name": "Lenovo Legion 5",
+
+    "nom": "Pc Portable Gamer Lenovo Legion 5 16IRX9 / i7-14650HX / RTX 4070 8G / 16 Go DDR5 / 1 To SSD / Windows 11 / Gris / Référence : 83DG00M6FG-2Y / Écran 16 WQXGA (2560 x 1600), IPS, antireflet, 240 Hz, DisplayHDR, Dolby Vision, G-SYNC, faible lumière bleue - Processeur Intel Core i7-14650HX, (jusqu’à 5.2 GHz, 30 Mo de mémoire cache) - Mémoire 16 Go DDR5-5600 - Disque SSD M.2 NVMe 1 To - Carte graphique NVIDIA GeForce RTX 4070, 8 Go de mémoire GDDR6 dédiée - Lecteur de carte microSD - 2x Haut-parleurs stéréo 2W, optimisés avec Nahimic Audio - Caméra FHD 1080p avec obturateur électronique - Clavier Rétroéclairage RVB 4 zones, français",
+
+    "price": 1999.99,
+
+    "imageUrl": "assets/img2.jpg"
+
+  },
+
+  {
+
+    "id": 3,
+
+    "name": "MacBook Air M3 13",
+
+    "nom": "Apple MacBook Air M3 13 (2024) / 24 Go / 512 Go / Silver / Référence : MC8N4FN-A / Écran Liquid Retina 13.6 (2560 x 1664 pixels) - Processeur: Apple M3 (8 cœurs/GPU 10 cœurs) - Processeur: graphique Apple M3 à 10 cœurs - Mémoire: 24 Go - Disque SSD 512 Go - Système d'exploitation macOS Sequoia d'Apple - Wi-Fi 6E - Bluetooth 5.3 - Webcam - Microphone / haut-parleur intégré - Connecteurs: jack femelle 3.5 mm / 2x Thunderbolt 4/USB-C - Autonomie de la batterie: 18 Heures - Couleur Silver - Garantie 1 an",
+
+    "price": 1299.99,
+
+    "imageUrl": "assets/img3.jpg"
+
+  },
+
+  {
+
+    "id": 4,
+
+    "name": "Micro-Casque Gaming",
+
+    "nom": "Micro-Casque Gaming Nacon RIG 800 Pro HS Wireless Pour PlayStation/ Xbox et PC/ Noir / Référence : 3665962005004 / Micro-Casque Gaming Nacon RIG 800 Pro HS Wireless Pour PS4/PS5/PC - FIL RF numérique sans décalage 2.4 GHz - Adaptateur sans fil USB dédié - Portée de 10 m - Batterie 1800 mAh - MICROPHONE : Réponse en fréquence: 100 Hz-10 kHz - Sensibilité: -45 dBV/Pa - Rapport signal/bruit: >42 dB - Directivité: unidirectionnel - HAUT-PARLEUR : Réponse en fréquence: 20 Hz-20 kHz - Pilotes: 2x dynamiques 40 mm avec tubes de basses assortis",
+
+    "price": 1399.99,
+
+    "imageUrl": "assets/img4.jpg"
+
+  },
+
+  {
+
+    "id": 5,
+
+    "name": "Asus ROG Zephyrus",
+
+    "nom": "Asus ROG Zephyrus",
+
+    "price": 1799.99,
+
+    "imageUrl": "assets/img5.jpg"
+
+  },
+
+  {
+
+    "id": 6,
+
+    "name": "Acer Swift 3",
+
+    "nom": "Acer Swift 3",
+
+    "price": 799.99,
+
+    "imageUrl": "assets/img6.jpg"
+
+  },
+  {
+
+    "id": 6,
+
+    "name": "Acer Swift 3",
+
+    "nom": "Acer Swift 3",
+
+    "price": 799.99,
+
+    "imageUrl": "assets/img7.jpg"
+
+  },
+  {
+
+    "id": 6,
+
+    "name": "Acer Swift 3",
+
+    "nom": "Acer Swift 3",
+
+    "price": 799.99,
+
+    "imageUrl": "assets/img8.jpg"
+
+  }
+]
+
+

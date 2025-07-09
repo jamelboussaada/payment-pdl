@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CommonModule } from '@angular/common';
@@ -27,6 +27,7 @@ export interface Product {
 export class HomePageComponent implements OnInit {
   // ========== Component Properties ==========
   public products: Product[] = [];
+
   public partnersArray = [
     { imgName: '../assets/partner/p1.png' },
     { imgName: '../assets/partner/p4.png' },
@@ -116,15 +117,18 @@ export class HomePageComponent implements OnInit {
   };
 
   // ========== Constructor & Lifecycle Hooks ==========
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchProducts();
   }
-
+public viewProductDetails(productId: number |  undefined): void {
+if (productId) {
+    this.router.navigate(['/product', productId]);
+  }}
   // ========== Public Methods ==========
   public fetchProducts(): void {
-    this.http.get<Product[]>('YOUR_API_ENDPOINT_HERE').subscribe({
+    this.http.get<Product[]>('assets/products.json').subscribe({
       next: (data) => this.products = data,
       error: (error) => console.error('Error fetching products:', error)
     });
@@ -155,5 +159,5 @@ export class HomePageComponent implements OnInit {
   public changeImage8(event: Event): void {
     this.url8 = (event.target as HTMLImageElement).src;
   }
-  
+
 }
