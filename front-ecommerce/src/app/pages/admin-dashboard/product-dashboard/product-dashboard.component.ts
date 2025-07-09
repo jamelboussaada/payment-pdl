@@ -1,81 +1,84 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AdminNavbarComponent } from '../../../shared/admin-navbar/admin-navbar.component';
+import { AdminSidebarComponent } from '../../../shared/admin-sidebar/admin-sidebar.component';
+import { SidebarService } from '../../../core/services/sidebar.service';
+import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 interface Product {
   id: number;
   name: string;
-  price: number;
+  description: string;
+  prix: number;
+  quantite: number;
   imageUrl: string;
-  stock: number;
 }
 
 @Component({
   selector: 'app-product-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, AdminNavbarComponent],
+  imports: [CommonModule, FormsModule, AdminSidebarComponent],
   templateUrl: './product-dashboard.component.html',
-  styleUrl: './product-dashboard.component.css'
+  styleUrls: ['./product-dashboard.component.css']
 })
-export class ProductDashboardComponent implements OnInit {
+export class ProductDashboardComponent implements OnInit, OnDestroy {
   newProduct: Product = {
     id: 0,
     name: '',
-    price: 0,
-    imageUrl: '',
-    stock: 0
+    description: '',
+    prix: 0,
+    quantite: 0,
+    imageUrl: ''
   };
 
   products: Product[] = [];
   private nextId: number = 1;
+  sidebarActive: boolean = true;
+  private sidebarSubscription: Subscription = new Subscription();
 
-  constructor() { }
+  constructor(private sidebarService: SidebarService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    // Load existing products (e.g., from a service or local storage)
     this.loadProducts();
+    this.sidebarSubscription = this.sidebarService.sidebarActive$.subscribe(active => {
+      this.sidebarActive = active;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.sidebarSubscription) {
+      this.sidebarSubscription.unsubscribe();
+    }
   }
 
   loadProducts(): void {
-    // Simulate loading from a backend or local storage
-    // In a real app, you'd fetch this from a service
-    this.products = [
-      { id: 1, name: 'Laptop Pro', price: 1200, imageUrl: 'assets/img1.jpg', stock: 50 },
-      { id: 2, name: 'Gaming Mouse', price: 75, imageUrl: 'assets/img2.jpg', stock: 200 },
-      { id: 3, name: 'Mechanical Keyboard', price: 150, imageUrl: 'assets/img3.jpg', stock: 100 }
-    ];
-    this.nextId = Math.max(...this.products.map(p => p.id)) + 1;
+    this.http.get<Product[]>('http://localhost:8080/api/produits').subscribe(data => {
+      this.products = data;
+    });
   }
-
   addProduct(): void {
-    if (this.newProduct.name && this.newProduct.price > 0 && this.newProduct.imageUrl && this.newProduct.stock >= 0) {
-      this.newProduct.id = this.nextId++;
-      this.products.push({ ...this.newProduct });
-      // Reset form
-      this.newProduct = {
-        id: 0,
-        name: '',
-        price: 0,
-        imageUrl: '',
-        stock: 0
-      };
-      console.log('Product added:', this.products);
-      // In a real app, you'd send this to a service/backend
+    if (this.newProduct.name && this.newProduct.prix > 0 && this.newProduct.imageUrl && this.newProduct.quantite >= 0) {
+      this.http.post<Product>('http://localhost:8080/api/produits', this.newProduct)
+      .subscribe((newProd: Product) => {
+        this.products.push(newProd);
+        this.newProduct = { id: 0, name: '', description: '', prix: 0, quantite: 0, imageUrl: '' };
+        console.log('Product added:', newProd);
+      });
     } else {
       alert('Please fill in all product details correctly.');
     }
   }
 
-  // Placeholder for edit and delete functionality
+
   editProduct(product: Product): void {
     console.log('Edit product:', product);
-    // Implement edit logic (e.g., populate form with product data)
   }
 
   deleteProduct(productId: number): void {
-    this.products = this.products.filter(p => p.id !== productId);
-    console.log('Product deleted. Remaining products:', this.products);
-    // In a real app, you'd send this to a service/backend
+    this.http.delete(`http://localhost:8080/api/produits/${productId}`).subscribe(() => {
+      this.products = this.products.filter(p => p.id !== productId);
+      console.log('Product deleted');
+    });
   }
 }

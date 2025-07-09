@@ -24,4 +24,5 @@ export const routes: Routes = [
     { path:'reset-password', component: ResetPasswordComponent},
     { path:'admin/dashboard', component: ProductDashboardComponent},
     { path:'invoices', component: InvoicesComponent},
+    { path:'admin/products', component: ProductDashboardComponent},
 ];

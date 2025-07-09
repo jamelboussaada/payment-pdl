@@ -38,8 +38,8 @@
                 </td>
                 <td>
                   <div class="price-wrap">
-                    <var class="price">${{ (item.prix ?? 0) * item.quantity| number: '1.2-2' }}</var>
-                    <small class="text-muted"> ${{ item.prix | number: '1.2-2' }} each </small>
+                    <var class="price">{{ item.prix  * item.quantity| number: '1.2-2' }} DT</var>
+                    <small class="text-muted"> {{ item.prix | number: '1.2-2' }} DT each </small>
                   </div> <!-- price-wrap .// -->
                 </td>
                 <td class="text-right">
@@ -85,7 +85,7 @@
           <div class="card-body">
             <dl class="dlist-align">
               <dt>Total price:</dt>
-              <dd class="text-right">${{ getTotalPrice() | number: '1.2-2' }}</dd>
+              <dd class="text-right">{{ getTotalPrice() | number: '1.2-2' }} DT</dd>
             </dl>
             <hr>
             <p class="text-center mb-3">
