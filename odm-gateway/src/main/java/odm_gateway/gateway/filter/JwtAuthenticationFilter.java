@@ -50,6 +50,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                     Claims claims = jwtUtil.extractAllClaims(authHeader);
 
                     // Extrait les valeurs des claims
+                    Long id = claims.get("id" , Long.class);
                     String email = claims.get("email", String.class);
                     String phone = claims.get("phone", String.class);
                     String name = claims.get("name", String.class);
@@ -58,6 +59,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
                     // Modifie la requête en ajoutant les headers de user Connecte
                     ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
+                            .header("userId" , id.toString())
                             .header("userEmail", email)
                             .header("userPhone", phone)
                             .header("userName", name)

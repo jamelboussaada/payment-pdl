@@ -33,6 +33,7 @@ public class JwtService {
      */
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("id" , user.getId());
         claims.put("name", user.getName());
         claims.put("lastName", user.getLastName());
         claims.put("email", user.getEmail());

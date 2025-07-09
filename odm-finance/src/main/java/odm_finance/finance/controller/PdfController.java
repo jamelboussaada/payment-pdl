@@ -77,7 +77,8 @@ public class PdfController {
                                               @RequestHeader String userLastName,
                                               @RequestHeader String userPhone,
                                               @RequestHeader String userEmail,
-                                              @RequestHeader String userAddress
+                                              @RequestHeader String userAddress,
+                                              @RequestHeader String userId
     ) {
         try {
             // Validation des données d'entrée
@@ -94,8 +95,11 @@ public class PdfController {
             // Générer le PDF
             byte[] pdfBytes = invoiceService.generateInvoicePdf(invoiceData);
 
+            String filePath = commandeService.savePdfToFile(pdfBytes, invoiceData.getNumber());
+
+
             try {
-                commandeService.saveCommande(userName, userLastName, userEmail, userPhone, userAddress, produitsAchat);
+                commandeService.saveCommande(Long.parseLong(userId), produitsAchat , filePath);
             } catch (Exception e) {
                 System.err.println("Failed to save commande: " + e.getMessage());
             }

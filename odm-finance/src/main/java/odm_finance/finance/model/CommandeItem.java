@@ -1,5 +1,6 @@
 package odm_finance.finance.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,6 @@ public class CommandeItem {
 
     @ManyToOne
     @JoinColumn(name = "commande_id")
+    @JsonBackReference
     private Commande commande;
 }
