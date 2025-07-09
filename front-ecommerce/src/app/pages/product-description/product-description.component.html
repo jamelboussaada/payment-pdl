@@ -33,7 +33,8 @@
     </div>
 <div class="product-price">
       <span>{{ product.price }} DNT</span>
-      <a href="#" class="cart-btn" (click)="addToCart()">Add to cart</a>
+      <a href="#" class="cart-btn" (click)="addToCart($event)">Add to cart</a>
+      <button class="go-home-btn" [routerLink]="['/home']">Go Home</button>
     </div>
   </div>
 </main>
