@@ -232,6 +232,12 @@ background: rgb(84 51 235 / var(--tw-bg-opacity));
     .toggle-panel h1{font-size: 30px;}
 }
 
+.success-snackbar {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
 
-
-
+.error-snackbar {
+  background-color: #f44336; /* Red */
+  color: white;
+}

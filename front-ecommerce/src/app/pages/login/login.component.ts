@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, MatSnackBarModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -16,6 +17,7 @@ export class LoginComponent {
   isRegisterView = false;
   authService = inject(AuthService);
   router = inject(Router);
+  snackBar = inject(MatSnackBar);
 
   //api
   registerForm: FormGroup = new FormGroup({
@@ -42,12 +44,27 @@ export class LoginComponent {
   onRegister(){
     this.authService.signup(this.registerForm.value).subscribe((res:any)=> {
       if(res.result){
-        console.log("Customer Registered Successfully")
+        this.snackBar.open("Customer Registered Successfully", "Close", { 
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: ['success-snackbar']
+        });
       }else{
-        console.log(res.message)
+        this.snackBar.open(res.message, "Close", { 
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: ['error-snackbar']
+        });
       }
     }, error => {
-      console.log("Network Error")
+      this.snackBar.open("Network Error", "Close", { 
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar']
+      });
     })
   }
 
@@ -56,18 +73,32 @@ export class LoginComponent {
 
     const formValue = this.loginForm.value;
     this.authService.signin(formValue).subscribe((res:any)=> {
-      alert('login success')
-      console.log(res)
       if(res){
+        this.snackBar.open("Login Success", "Close", { 
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: ['success-snackbar']
+        });
         sessionStorage.setItem("ecommerceUser", JSON.stringify({"token": res}));
         this.router.navigateByUrl("home");
 
       }else{
-        console.log(res)
+        this.snackBar.open("Invalid Credentials", "Close", { 
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: ['error-snackbar']
+        });
       }
 
     }, error => {
-      console.log("Network Error")
+      this.snackBar.open("Network Error", "Close", { 
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar']
+      });
 
     })
   }
