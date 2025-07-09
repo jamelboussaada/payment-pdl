@@ -6,6 +6,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { SuccessPurchaseComponent } from './pages/successpurchase/successpurchase.component';
 import { FailedPurchaseComponent } from './pages/failedpurchase/failedpurchase.component';
 import { ProductDescriptionComponent } from './pages/product-description/product-description.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,4 +18,6 @@ export const routes: Routes = [
     { path: 'success', component: SuccessPurchaseComponent },
     { path: 'fail', component: FailedPurchaseComponent },
     { path:'product/:id', component: ProductDescriptionComponent},
+    { path:'forgot-password', component: ForgotPasswordComponent},
+    { path:'reset-password', component: ResetPasswordComponent},
 ];

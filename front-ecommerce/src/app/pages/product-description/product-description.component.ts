@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
+import { CartService } from '../../core/services/cart.service';
+import { CartPopupService } from '../../core/services/cart-popup.service';
+import { RouterModule } from '@angular/router';
 
 export interface Product {
   id: number;
@@ -17,7 +20,7 @@ export interface Product {
 @Component({
   selector: 'app-product-description',
   standalone: true,
-  imports: [CommonModule, FooterComponent, NavbarComponent],
+  imports: [CommonModule, FooterComponent, NavbarComponent, RouterModule],
   templateUrl: './product-description.component.html',
   styleUrl: './product-description.component.css'
 })
@@ -28,7 +31,9 @@ export class ProductDescriptionComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cartService: CartService,
+    private cartPopupService: CartPopupService
   ) {}
 
   ngOnInit(): void {
@@ -68,10 +73,15 @@ export class ProductDescriptionComponent implements OnInit{
   });
 }
 
-  addToCart(): void {
+  addToCart(event: Event): void {
+    event.preventDefault(); // Prevent default anchor tag behavior
+    console.log('Add to cart button clicked.');
     if (this.product) {
-      console.log('Added to cart:', this.product);
-
+      console.log('Product exists:', this.product);
+      this.cartService.addToCart(this.product);
+      this.cartPopupService.showPopup(this.product);
+    } else {
+      console.log('Product is null or undefined. Cannot add to cart.');
     }
   }
 

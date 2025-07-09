@@ -26,20 +26,22 @@
         <div class="card">
           <div class="card-main">
             <div class="image">
-              <img [src]="product.imageUrl" [alt]="product.description" />
+              <a [routerLink]="['/product', product.id]">
+                <img [src]="product.imageUrl" [alt]="product.description" />
+              </a>
             </div>
             <div class="cart-line">
               <div class="cart-item">
                 <ul>
                   <li><a (click)="addToCart(product)"><i class="fa fa-shopping-basket"></i></a></li>
                   <li><a (click)="addToFavourites(product)"><i class="fa fa-heart" [ngClass]="{'favourite-icon-colored': isFavourite(product)}"></i></a></li>
-                  <li><a href=""><i class="fa fa-search"></i></a></li>
+                  <!-- <li><a><i class="fa fa-search"></i></a></li> -->
                 </ul>
               </div>
             </div>
           </div>
           <div class="content">
-            <h3>{{ product.name }}</h3>
+            <h3><a [routerLink]="['/product', product.id]">{{ product.name }}</a></h3>
             <div class="rating">
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
