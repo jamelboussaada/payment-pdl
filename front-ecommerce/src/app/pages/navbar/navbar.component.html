@@ -1,25 +1,23 @@
 <header>
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row">
       <div class="col-md-4">
         <div class="logo">
-          <h2>NovaGadget</h2>
+         <h2>NovaGadget</h2>
         </div>
       </div>
       <div class="col-md-8 text-right">
         <nav class="navbar">
-          <a routerLink="/home" routerLinkActive="active" (click)="log()">Home</a>
-          <a routerLink="/favourite" routerLinkActive="active">Favorite</a>
-          <a routerLink="/cart" routerLinkActive="active" class="cart">Cart</a>
-          <!-- <a routerLink="/contact" routerLinkActive="active">Contact</a> -->
-          <a routerLink="/login" routerLinkActive="active" class="login">Login</a>
+            <a routerLink="/home" routerLinkActive="active" (click)="log()">Home</a>
+            <a routerLink="/favourite" routerLinkActive="active">Favorite</a>
+            <a routerLink="/cart" routerLinkActive="active" class="cart">Cart</a>
+            <!-- <a routerLink="/Contact" routerLinkActive="active">Contact</a> -->
+            <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active" class="login">Login</a>
+            <a *ngIf="isLoggedIn()" (click)="logout()" class="login">Logout</a>
         </nav>
       </div>
     </div>
   </div>
 </header>
-
-
-
 <!-- section-header.// -->
 

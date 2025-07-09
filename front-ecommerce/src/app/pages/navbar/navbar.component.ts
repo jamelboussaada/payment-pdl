@@ -15,5 +15,13 @@ export class NavbarComponent {
   console.log('Routing triggered');
 }
 
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('ecommerceUser');
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('ecommerceUser');
+    // Optionally, navigate to login page or home page after logout
+  }
 
 }

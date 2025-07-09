@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent {
 
   //showRegisterForm = signal<boolean>(false);
   isRegisterView = false;
-  http = inject(HttpClient);
+  authService = inject(AuthService);
   router = inject(Router);
 
   //api
@@ -40,16 +40,14 @@ export class LoginComponent {
     return this.isRegisterView;
   }
   onRegister(){
-    debugger;
-    this.http.post("https//:", this.customerObj).subscribe((res:any)=> {
-      debugger;
+    this.authService.signup(this.customerObj).subscribe((res:any)=> {
       if(res.result){
-        alert("Customer Registered Successfully")
+        console.log("Customer Registered Successfully")
       }else{
-        alert(res.message)
+        console.log(res.message)
       }
     }, error => {
-      alert("Network Error")
+      console.log("Network Error")
     })
   }
 
@@ -57,10 +55,10 @@ export class LoginComponent {
   onLogin(){
     debugger;
     const formValue = this.loginForm.value;
-    this.http.post("https//:", formValue).subscribe((res:any)=> {
+    this.authService.signin(formValue).subscribe((res:any)=> {
       debugger;
       if(res.result){
-        sessionStorage.setItem("ecommerceUser", JSON.stringify(res.data));
+        sessionStorage.setItem("ecommerceUser", JSON.stringify({"token": res.data}));
         this.router.navigateByUrl("home-page");
 
       }else{
