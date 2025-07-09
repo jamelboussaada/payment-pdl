@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,17 +12,18 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
 
+  constructor(private authService: AuthService) { }
+
   log() {
-  console.log('Routing triggered');
-}
+    console.log('Routing triggered');
+  }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('ecommerceUser');
+    return !!sessionStorage.getItem('token'); // Check for 'token' directly
   }
 
   logout(): void {
-    sessionStorage.removeItem('ecommerceUser');
-    // Optionally, navigate to login page or home page after logout
+    this.authService.logout(); // Call the logout method from AuthService
   }
 
 }
