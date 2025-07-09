@@ -19,7 +19,7 @@ export class NavbarComponent {
   }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('token'); // Check for 'token' directly
+    return !!sessionStorage.getItem('ecommerceUser'); // Check for 'token' directly
   }
 
   logout(): void {
