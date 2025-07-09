@@ -30,6 +30,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cart$.subscribe(items => {
       this.cartItems = items;
+      console.log(this.cartItems);
+      sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     });
   }
 

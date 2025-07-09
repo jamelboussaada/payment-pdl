@@ -37,23 +37,17 @@ export class SuccessPurchaseComponent {
   }
 
   printReceipt() {
-    const payload = [
-      {
-        "nom": "clavier",
-        "prix": 25.25,
-        "quantite": 1
-      },
-      {
-        "nom": "pc portable lenovo ",
-        "prix": 25.25,
-        "quantite": 1
-      },
-      {
-        "nom": "souris msi",
-        "prix": 25.25,
-        "quantite": 1
-      }
-    ];
+    const cartString = sessionStorage.getItem('cart');
+    let payload: any[] = [];
+    if (cartString) {
+      const cart = JSON.parse(cartString);
+      payload = cart.map((item: any) => ({
+        nom: item.name,
+        prix: item.prix,
+        quantite: item.quantity
+      }));
+    }
     this.pdfOperationService.downloadPdf(payload);
+    sessionStorage.removeItem('cart');
   }
 }
