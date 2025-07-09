@@ -45,7 +45,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(getExpirationDate()) // 1 hour from now
+                .setExpiration(getExpirationDate()) // 1 day from now
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -95,6 +95,6 @@ public class JwtService {
      * @return expirationDate
      */
     private Date getExpirationDate() {
-        return new Date(System.currentTimeMillis() + 1000 * 60 * 60); // 1 hour
+        return new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24); // 1 day
     }
 }
