@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { NotificationComponent } from './shared/notification/notification.component'; // New import
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NotificationComponent], // Added NotificationComponent
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -4,11 +4,11 @@
   <h2>My Favorites</h2>
   <div *ngIf="favorites && favorites.length; else noFavorites" class="favorites-grid">
     <div class="favorite-card" *ngFor="let item of favorites">
-      <img [src]="item.image" alt="{{item.title}}" />
+      <img [src]="item.imageUrl" alt="{{item.name}}" />
       <div class="favorite-info">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
-        <button (click)="removeFavorite(item)">Remove</button>
+        <h3>{{ item.name }}</h3>
+        <p class="price">{{ item.price }} DT</p>
+        <button *ngIf="item.id" (click)="removeFavorite(item.id)">Remove</button>
       </div>
     </div>
   </div>

@@ -6,12 +6,15 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
+import { FavouriteService } from '../../core/services/favourite.service';
+import { NotificationService } from '../../core/services/notification.service';
+import { CartService } from '../../core/services/cart.service';
 
 // Temporary Product interface definition (replace with real one if available)
 export interface Product {
-  id?: number;
+  id: number; // Made id mandatory
   name?: string;
-  price?: number;
+  price: number; // Made price mandatory
   imageUrl?: string;  // Add this property
   nom?: string;       // Add this property if required
 }
@@ -27,6 +30,8 @@ export interface Product {
 export class HomePageComponent implements OnInit {
   // ========== Component Properties ==========
   public products: Product[] = [];
+
+  public favouriteProducts: Product[] = []; // New property
 
   public partnersArray = [
     { imgName: '../assets/partner/p1.png' },
@@ -117,15 +122,44 @@ export class HomePageComponent implements OnInit {
   };
 
   // ========== Constructor & Lifecycle Hooks ==========
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private favouriteService: FavouriteService, private notificationService: NotificationService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.fetchProducts();
+    this.favouriteService.favourites$.subscribe(favourites => {
+      this.favouriteProducts = favourites;
+    });
   }
-public viewProductDetails(productId: number |  undefined): void {
+  public viewProductDetails(productId: number |  undefined): void {
 if (productId) {
     this.router.navigate(['/product', productId]);
   }}
+
+  public addToFavourites(product: Product): void {
+    if (this.isFavourite(product)) {
+      // Product is already in favourites, so remove it
+      if (product.id !== undefined) { // Ensure product.id is not undefined
+        this.favouriteService.removeFromFavourites(product.id);
+        this.notificationService.show(`${product.name} has been removed from your favourites!`, 'info');
+      } else {
+        this.notificationService.show(`Cannot remove ${product.name}: Product ID is undefined.`, 'error');
+      }
+    } else {
+      // Product is not in favourites, so add it
+      this.favouriteService.addToFavourites(product);
+      this.notificationService.show(`${product.name} has been added to your favourites!`, 'success');
+    }
+  }
+
+  public isFavourite(product: Product): boolean {
+    return this.favouriteProducts.some(fav => fav.id === product.id);
+  }
+
+  public addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+    this.notificationService.show(`${product.name} has been added to your cart!`, 'success');
+  }
+
   // ========== Public Methods ==========
   public fetchProducts(): void {
     this.http.get<Product[]>('assets/products.json').subscribe({

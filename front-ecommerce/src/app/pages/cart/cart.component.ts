@@ -7,6 +7,8 @@ import { FooterComponent } from "../footer/footer.component";
 import { PaymentService } from '../../core/services/payment.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CartService, CartItem } from '../../core/services/cart.service'; // Updated import
+import { Product } from '../../pages/home-page/home-page.component'; // New import
 
 @Component({
   selector: 'app-cart',
@@ -16,61 +18,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems = [
-    {
-      id: 1,
-      name: 'Some name of item goes here nice',
-      size: 'XL',
-      color: 'blue',
-      brand: 'Gucci',
-      price: 1156.00,
-      quantity: 1,
-      imgUrl: 'assets/img1.jpg'
-    },
-    {
-      id: 2,
-      name: 'Product name goes here nice',
-      size: 'XL',
-      color: 'blue',
-      brand: 'Gucci',
-      price: 149.97,
-      quantity: 1,
-      imgUrl: 'assets/img2.jpg'
-    },
-    {
-      id: 3,
-      name: 'Another name of some product goes just here',
-      size: 'XL',
-      color: 'blue',
-      brand: 'Tissot',
-      price: 98.00,
-      quantity: 1,
-      imgUrl: 'assets/img3.jpg'
-    }
-  ];
+  cartItems: CartItem[] = []; // Now an array of CartItem
 
   constructor(
     private paymentService: PaymentService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private cartService: CartService // Injected CartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartService.cart$.subscribe(items => {
+      this.cartItems = items;
+    });
+  }
 
-  onQuantityChange(item: any): void {
+  onQuantityChange(item: CartItem): void {
     if (item.quantity < 1) {
       item.quantity = 1;
     } else if (item.quantity > 10) {
       item.quantity = 10;
     }
-    this.updateCart();
+    if (item.id !== undefined) {
+      this.cartService.updateQuantity(item.id, item.quantity);
+    }
   }
 
-  removeItem(item: any): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
-      this.updateCart();
+  removeItem(productId: number | undefined): void {
+    if (productId !== undefined) {
+      this.cartService.removeFromCart(productId);
     }
   }
 
@@ -78,9 +54,7 @@ export class CartComponent implements OnInit {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
-  updateCart(): void {
-    // Logic to update the cart (API call, saving to local storage, etc.)
-  }
+  
 
   applyCoupon(): void {
     // Placeholder for coupon application logic

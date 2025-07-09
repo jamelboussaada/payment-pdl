@@ -417,3 +417,7 @@ footer p a:hover {
     padding: 10px 20px;
   }
 }
+
+.favourite-icon-colored {
+  color: red;
+}

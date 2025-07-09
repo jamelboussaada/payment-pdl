@@ -1,0 +1,17 @@
+<div class="cart-slide-overlay" *ngIf="showSlide" (click)="continueShopping()">
+  <div class="cart-slide-content" (click)="$event.stopPropagation()">
+    <button class="close-button" (click)="continueShopping()">&times;</button>
+    <h3>Item Added to Cart!</h3>
+    <div *ngIf="product" class="product-details">
+      <img [src]="product.imageUrl" alt="{{ product.name }}">
+      <div class="info">
+        <h4>{{ product.name }}</h4>
+        <p>{{ product.price }} DT</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-continue" (click)="continueShopping()">Continue Shopping</button>
+      <button class="btn btn-purchase" (click)="makePurchase()">Make Purchase</button>
+    </div>
+  </div>
+</div>
