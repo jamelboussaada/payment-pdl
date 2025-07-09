@@ -19,7 +19,7 @@ spring:
             - id: odm-finance
               uri: http://localhost:8091
               predicates:
-                - Path= /api/produits/**,/api/payments/**,/api/pdf/**,/api/stripe/**,/api/command-items/**
+                - Path= /api/produits/**,/api/payments/**,/api/pdf/**,/api/stripe/**,/api/command-items/**, /api/commands/**
               filters:
                 - JwtAuthenticationFilter
             - id: odm-payment
