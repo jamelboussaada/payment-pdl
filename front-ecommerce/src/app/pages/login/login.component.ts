@@ -80,7 +80,7 @@ export class LoginComponent {
           horizontalPosition: 'right',
           panelClass: ['success-snackbar']
         });
-        sessionStorage.setItem("ecommerceUser", JSON.stringify({"token": res}));
+        sessionStorage.setItem("ecommerceUser", JSON.stringify(res));
         this.router.navigateByUrl("home");
 
       }else{

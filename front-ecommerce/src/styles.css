@@ -126,3 +126,18 @@ transform: translate(-50%, -50%);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snackbar-success {
+  background-color: #4CAF50 !important; /* Green */
+  color: white !important;
+}
+
+.snackbar-error {
+  background-color: #F44336 !important; /* Red */
+  color: white !important;
+}
+
+.snackbar-warning {
+  background-color: #FFC107 !important; /* Amber/Yellow */
+  color: black !important;
+}

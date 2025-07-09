@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';  // Import FormsModule
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from "../footer/footer.component";
+import { PaymentService } from '../../core/services/payment.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent, FooterComponent, FormsModule],  // Add FormsModule here
+  imports: [CommonModule, RouterLink, NavbarComponent, FooterComponent, FormsModule, MatSnackBarModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  // The cart items and other methods remain unchanged
-
   cartItems = [
     {
       id: 1,
@@ -48,7 +49,11 @@ export class CartComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(
+    private paymentService: PaymentService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -80,5 +85,41 @@ export class CartComponent implements OnInit {
   applyCoupon(): void {
     // Placeholder for coupon application logic
     console.log("Coupon applied!");
+  }
+
+  makePurchase(): void {
+    const totalPrice = this.getTotalPrice();
+    this.paymentService.makePayment(totalPrice).subscribe({
+      next: (response) => {
+        this.snackBar.open('Payment initiated successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'left',
+          panelClass: ['snackbar-success']
+        });
+        console.log(response)
+
+        if (response ) {
+          setTimeout(() => {
+            console.log(response)
+            window.location.href = response.url;
+          }, 4000); // 4-second delay
+        } else {
+          this.snackBar.open('Payment initiated, but no redirect URL received.', 'Close', {
+            duration: 3000,
+            panelClass: ['snackbar-warning']
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Payment error:', error);
+        this.snackBar.open('Payment failed. Please try again.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'left',
+          panelClass: ['snackbar-error']
+        });
+      }
+    });
   }
 }
