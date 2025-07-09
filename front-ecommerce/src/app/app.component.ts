@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { FooterComponent } from './pages/footer/footer.component';
-import { NotificationComponent } from './shared/notification/notification.component'; // New import
+import { NotificationComponent } from './shared/notification/notification.component';
+import { CartPopupComponent } from './shared/cart-popup/cart-popup.component'; // New import
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NotificationComponent], // Added NotificationComponent
+  imports: [RouterOutlet, NotificationComponent, CartPopupComponent], // Added CartPopupComponent
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

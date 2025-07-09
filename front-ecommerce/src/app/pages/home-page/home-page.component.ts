@@ -9,6 +9,7 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { FavouriteService } from '../../core/services/favourite.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { CartService } from '../../core/services/cart.service';
+import { CartPopupService } from '../../core/services/cart-popup.service'; // New import
 
 // Temporary Product interface definition (replace with real one if available)
 export interface Product {
@@ -122,7 +123,7 @@ export class HomePageComponent implements OnInit {
   };
 
   // ========== Constructor & Lifecycle Hooks ==========
-  constructor(private http: HttpClient, private router: Router, private favouriteService: FavouriteService, private notificationService: NotificationService, private cartService: CartService) {}
+  constructor(private http: HttpClient, private router: Router, private favouriteService: FavouriteService, private notificationService: NotificationService, private cartService: CartService, private cartPopupService: CartPopupService) {}
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -157,7 +158,7 @@ if (productId) {
 
   public addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    this.notificationService.show(`${product.name} has been added to your cart!`, 'success');
+    this.cartPopupService.showPopup(product);
   }
 
   // ========== Public Methods ==========
