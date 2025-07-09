@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import odm_finance.finance.model.*;
 import odm_finance.finance.service.CommandeService;
 import odm_finance.finance.service.InvoiceService;
+import odm_finance.finance.service.PaymentNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,6 +28,9 @@ public class PdfController {
 
     @Autowired
     private CommandeService commandeService;
+
+    @Autowired
+    PaymentNotificationService paymentNotificationService;
 
     /**
      * Génère un PDF et retourne une réponse JSON avec le PDF encodé en base64
@@ -96,6 +100,20 @@ public class PdfController {
             byte[] pdfBytes = invoiceService.generateInvoicePdf(invoiceData);
 
             String filePath = commandeService.savePdfToFile(pdfBytes, invoiceData.getNumber());
+
+            //send invoice in mail
+            try {
+                PaymentController.PaymentRequest paymentRequest =
+                        new PaymentController.PaymentRequest(userName + " " + userLastName,
+                                userEmail,
+                                "CARD",
+                                produitsAchat
+                        );
+                PaymentData paymentData = invoiceService.createPaymentData(paymentRequest, invoiceData);
+                paymentNotificationService.sendPaymentConfirmation(paymentData, invoiceData);
+            } catch (Exception e) {
+                System.err.println("Failed to save commande: " + e.getMessage());
+            }
 
 
             try {

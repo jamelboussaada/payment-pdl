@@ -1,13 +1,17 @@
 package odm_finance.finance.service;
 
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import odm_finance.finance.controller.PaymentController;
 import odm_finance.finance.model.InvoiceData;
+import odm_finance.finance.model.PaymentData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class InvoiceService {
@@ -56,4 +60,23 @@ public class InvoiceService {
             throw new RuntimeException("Erreur lors de la génération du PDF: " + e.getMessage(), e);
         }
     }
+
+    public PaymentData createPaymentData(PaymentController.PaymentRequest request, InvoiceData invoiceData) {
+        return new PaymentData(
+                generateTransactionId(),
+                invoiceData.getNumber(),
+                invoiceData.getTotal(),
+                request.getPaymentMethod(),
+                LocalDateTime.now(),
+                request.getClientName(),
+                request.getClientEmail(),
+                "COMPLETED"
+        );
+    }
+
+    private String generateTransactionId() {
+        return "TXN-" + UUID.randomUUID().toString().substring(0, 12).toUpperCase();
+    }
+
+
 }
