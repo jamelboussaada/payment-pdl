@@ -15,9 +15,10 @@ import { CartPopupService } from '../../core/services/cart-popup.service'; // Ne
 export interface Product {
   id: number; // Made id mandatory
   name?: string;
-  price: number; // Made price mandatory
+  prix: number; // Made price mandatory
   imageUrl?: string;  // Add this property
-  nom?: string;       // Add this property if required
+  description?: string;       // Add this property if required
+  quantite?: number;
 }
 
 

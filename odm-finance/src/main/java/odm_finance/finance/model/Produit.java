@@ -1,9 +1,8 @@
 package odm_finance.finance.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -13,10 +12,15 @@ public class Produit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nom;
+    @NotBlank(message = "Le nom est obligatoire")
+    private String name;
+    @Min(value = 0, message = "Le prix doit être positif")
     private Double prix;
+    @NotBlank(message = "La description est obligatoire")
+    @Column(length = 10000)
     private String description;
     private Integer quantite;
+    @NotBlank(message = "L'URL de l'image est obligatoire")
     private String imageUrl;
 
 }

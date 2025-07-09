@@ -2,14 +2,14 @@
 
 <main class="containers" *ngIf="product">
   <div class="left-column">
-    <img [src]="product.imageUrl" [alt]="product.nom" class="active">
+    <img [src]="product.imageUrl" [alt]="product.description" class="active">
   </div>
 
   <div class="right-column">
     <div class="product-description">
       <h1>{{ product.name }}</h1>
-      <p>{{ product.nom }}</p>
-      <h3>Quantity: 100</h3>
+      <p>{{ product.description }}</p>
+      <h3>Quantity: {{ product.quantite }}</h3>
     </div>
 
     <div class="product-configuration">
@@ -32,7 +32,7 @@
       </div>
     </div>
 <div class="product-price">
-      <span>{{ product.price }} DNT</span>
+      <span>{{ product.prix }} DNT</span>
       <a href="#" class="cart-btn" (click)="addToCart()">Add to cart</a>
     </div>
   </div>

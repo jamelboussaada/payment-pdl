@@ -35,7 +35,7 @@ public class ProduitService {
         Optional<Produit> produit = produitRepository.findById(id);
         if (produit.isPresent()) {
             Produit existingProduit = produit.get();
-            existingProduit.setNom(produitDetails.getNom());
+            existingProduit.setName(produitDetails.getName());
             existingProduit.setPrix(produitDetails.getPrix());
             existingProduit.setDescription(produitDetails.getDescription());
             existingProduit.setQuantite(produitDetails.getQuantite());

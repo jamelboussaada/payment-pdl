@@ -8,9 +8,10 @@ import { NavbarComponent } from "../navbar/navbar.component";
 export interface Product {
   id: number;
   name: string;
-  price: number;
+  prix: number;
   imageUrl: string;
-  nom: string;
+  description: string;
+  quantite: number;
 }
 
 @Component({
