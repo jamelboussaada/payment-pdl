@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { AdminSidebarComponent } from '../../../shared/admin-sidebar/admin-sidebar.component';
 import { SidebarService } from '../../../core/services/sidebar.service';
 import { Subscription } from 'rxjs';
+import { BillingAdminComponent } from "../billing-admin/billing-admin.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, AdminSidebarComponent],
+  imports: [CommonModule, AdminSidebarComponent, BillingAdminComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -48,4 +49,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.loading = false; // Also set to false on error
     });
   }
+  
 }
