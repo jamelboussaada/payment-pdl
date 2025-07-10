@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pendingCommands: number = 0;
   completedCommands: number = 0;
   sidebarActive: boolean = true;
+  loading: boolean = true; // Add loading property
   private sidebarSubscription: Subscription = new Subscription();
 
   constructor(private http: HttpClient, private sidebarService: SidebarService) { }
@@ -35,12 +36,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadCommandStatistics(): void {
+    this.loading = true; // Set loading to true before fetching
     // Placeholder for API call to fetch command statistics
     // Replace with your actual API endpoint
     this.http.get<any>('http://localhost:8080/api/commands/statistics').subscribe(data => {
       this.totalCommands = data.totalCommands || 0;
       this.pendingCommands = data.pendingCommands || 0;
       this.completedCommands = data.completedCommands || 0;
+      this.loading = false; // Set loading to false after data is loaded
+    }, () => {
+      this.loading = false; // Also set to false on error
     });
   }
 }

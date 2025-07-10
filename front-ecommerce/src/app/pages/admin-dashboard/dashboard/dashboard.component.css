@@ -61,19 +61,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: rgb(94 114 228/var(--tw-bg-opacity,1));
   font-size: 1.5rem; /* Slightly larger icon size */
   box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06); /* Shadow for icons */
 }
 
 /* Adjustments for the layout */
-.w-full.px-3.mb-6.sm\:w-1\/2.sm\:flex-none.xl\:mb-0.xl\:w-1\/4 > div {
-  height: 100%; /* Ensure cards in a row have equal height */
-}
-
 .main-content {
   transition: margin-left 0.3s ease-in-out; /* Smooth transition for sidebar toggle */
   margin-left: 0; /* Default for smaller screens or when sidebar is hidden */
+  padding: 1.5rem; /* Add padding to the main content area */
 }
 
 @media (min-width: 1280px) { /* xl breakpoint */
@@ -85,6 +82,7 @@
 .dashboard-cards-container {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch; /* This will make all cards in a row the same height */
   margin-left: -0.75rem; /* Compensate for px-3 on child elements */
   margin-right: -0.75rem; /* Compensate for px-3 on child elements */
 }
