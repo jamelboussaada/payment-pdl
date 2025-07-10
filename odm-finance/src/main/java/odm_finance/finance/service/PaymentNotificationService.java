@@ -155,7 +155,7 @@ public class PaymentNotificationService {
                 // Paramètres du PaymentIntent
                 PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                     .setAmount(totalAmount)
-                    .setCurrency(request.getCurrency())
+                    .setCurrency("EUR")
                     .setDescription(request.getDescription() != null ?
                         request.getDescription() : "Paiement facture " + invoiceNumber)
                     .setReceiptEmail(request.getReceiptEmail() != null ?

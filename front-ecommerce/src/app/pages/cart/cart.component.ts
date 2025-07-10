@@ -56,7 +56,7 @@ export class CartComponent implements OnInit {
     return this.cartItems.reduce((total, item) => total + (item.prix * item.quantity), 0);
   }
 
-  
+
 
   applyCoupon(): void {
     // Placeholder for coupon application logic
@@ -64,6 +64,13 @@ export class CartComponent implements OnInit {
   }
 
   makePurchase(): void {
+
+    const token = sessionStorage.getItem('ecommerceUser');
+    if(!token){
+      this.router.navigate(['/login']);
+      return;
+    }
+
     const totalPrice = this.getTotalPrice();
     this.paymentService.makePayment(totalPrice).subscribe({
       next: (response) => {

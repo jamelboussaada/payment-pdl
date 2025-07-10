@@ -7,7 +7,7 @@
       <img [src]="item.imageUrl" alt="{{item.name}}" />
       <div class="favorite-info">
         <h3>{{ item.name }}</h3>
-        <p class="price">{{ item.prix }} DT</p>
+        <p class="price">{{ item.prix }} EUR</p>
         <button *ngIf="item.id" (click)="removeFavorite(item.id)">Remove</button>
       </div>
     </div>

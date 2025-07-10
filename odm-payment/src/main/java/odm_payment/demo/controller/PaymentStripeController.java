@@ -17,14 +17,14 @@ public class PaymentStripeController {
         SessionCreateParams params =
                 SessionCreateParams.builder()
                         .setMode(SessionCreateParams.Mode.PAYMENT)
-                        .setSuccessUrl("http://localhost:4200/success")
+                        .setSuccessUrl("http://localhost:4200/success?amount=" + request.getAmount())
                         .setCancelUrl("http://localhost:4200/fail")
                         .addLineItem(
                                 SessionCreateParams.LineItem.builder()
                                         .setQuantity(1L)
                                         .setPriceData(
                                                 SessionCreateParams.LineItem.PriceData.builder()
-                                                        .setCurrency("usd")
+                                                        .setCurrency("EUR")
                                                         .setUnitAmount(request.getAmount() * 100L)
                                                         .setProductData(
                                                                 SessionCreateParams.LineItem.PriceData.ProductData.builder()

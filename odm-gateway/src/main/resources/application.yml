@@ -13,7 +13,7 @@ spring:
             - id: odm-auth
               uri: http://localhost:8090
               predicates:
-                - Path= /auth/**,/test/**,
+                - Path= /auth/**,/test/** , /api/users/** ,
               filters:
                 - JwtAuthenticationFilter
             - id: odm-finance

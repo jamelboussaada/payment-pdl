@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AdminSidebarComponent } from '../../../shared/admin-sidebar/admin-sidebar.component';
-import { SidebarService } from '../../../core/services/sidebar.service';
-import { Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AdminSidebarComponent} from '../../../shared/admin-sidebar/admin-sidebar.component';
+import {SidebarService} from '../../../core/services/sidebar.service';
+import {Subscription} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 interface Product {
-  id: number;
+  id?: number | null;
   name: string;
   description: string;
   prix: number;
@@ -24,7 +24,7 @@ interface Product {
 })
 export class ProductDashboardComponent implements OnInit, OnDestroy {
   newProduct: Product = {
-    id: 0,
+    id: null,
     name: '',
     description: '',
     prix: 0,
@@ -38,6 +38,8 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
   private sidebarSubscription: Subscription = new Subscription();
 
   constructor(private sidebarService: SidebarService, private http: HttpClient) { }
+
+  editingProduct: Product | null = null;
 
   ngOnInit(): void {
     this.loadProducts();
@@ -53,17 +55,41 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
   }
 
   loadProducts(): void {
-    this.http.get<Product[]>('http://localhost:8080/api/produits').subscribe(data => {
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<Product[]>('http://localhost:8080/api/produits', {headers}).subscribe(data => {
       this.products = data;
     });
   }
+
   addProduct(): void {
-    if (this.newProduct.name && this.newProduct.prix > 0 && this.newProduct.imageUrl && this.newProduct.quantite >= 0) {
-      this.http.post<Product>('http://localhost:8080/api/produits', this.newProduct)
-      .subscribe((newProd: Product) => {
+    if (
+      this.newProduct.name &&
+      this.newProduct.prix > 0 &&
+      this.newProduct.imageUrl &&
+      this.newProduct.quantite >= 0
+    ) {
+      const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      this.http.post<Product>(
+        'http://localhost:8080/api/produits',
+        this.newProduct,
+        {headers}
+      ).subscribe((newProd: Product) => {
         this.products.push(newProd);
-        this.newProduct = { id: 0, name: '', description: '', prix: 0, quantite: 0, imageUrl: '' };
+        this.newProduct = {id: 0, name: '', description: '', prix: 0, quantite: 0, imageUrl: ''};
         console.log('Product added:', newProd);
+      }, error => {
+        console.error('Error adding product:', error);
+        alert('Error: unauthorized or server issue.');
       });
     } else {
       alert('Please fill in all product details correctly.');
@@ -87,13 +113,50 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
   }
 
   editProduct(product: Product): void {
-    console.log('Edit product:', product);
+    this.editingProduct = { ...product };
+    this.newProduct = { ...product };
   }
 
+
   deleteProduct(productId: number): void {
-    this.http.delete(`http://localhost:8080/api/produits/${productId}`).subscribe(() => {
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.delete(`http://localhost:8080/api/produits/${productId}`, {headers}).subscribe(() => {
       this.products = this.products.filter(p => p.id !== productId);
       console.log('Product deleted');
     });
+  }
+
+  updateProduct(): void {
+    if (!this.editingProduct) return;
+
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.put<Product>(
+      `http://localhost:8080/api/produits/${this.editingProduct.id}`,
+      this.newProduct,
+      { headers }
+    ).subscribe(updated => {
+      const index = this.products.findIndex(p => p.id === updated.id);
+      if (index > -1) this.products[index] = updated;
+
+      this.newProduct = { id: 0, name: '', description: '', prix: 0, quantite: 0, imageUrl: '' };
+      this.editingProduct = null;
+    }, error => {
+      console.error('Failed to update product:', error);
+      alert('Failed to update product.');
+    });
+  }
+
+  cancelEdit(): void {
+    this.newProduct = { id: 0, name: '', description: '', prix: 0, quantite: 0, imageUrl: '' };
+    this.editingProduct = null;
   }
 }

@@ -181,11 +181,8 @@ public class PdfController {
         double subtotal = produitsAchat.stream()
                 .mapToDouble(ProduitAchat::getTotal)
                 .sum();
-        
-        double taxRate = 0.20; // TVA à 20%
-        double taxAmount = subtotal * taxRate;
-        double total = subtotal + taxAmount;
-        
+
+
         // Convertir les produits en items de facture
         List<InvoiceData.InvoiceItem> items = produitsAchat.stream()
                 .map(produit -> new InvoiceData.InvoiceItem(
@@ -205,8 +202,8 @@ public class PdfController {
             client,
             items,
             subtotal,
-            taxAmount,
-            total
+            100,
+            subtotal
         );
     }
     

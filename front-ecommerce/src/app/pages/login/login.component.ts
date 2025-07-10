@@ -44,14 +44,14 @@ export class LoginComponent {
   onRegister(){
     this.authService.signup(this.registerForm.value).subscribe((res:any)=> {
       if(res.result){
-        this.snackBar.open("Customer Registered Successfully", "Close", { 
+        this.snackBar.open("Customer Registered Successfully", "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
           panelClass: ['success-snackbar']
         });
       }else{
-        this.snackBar.open(res.message, "Close", { 
+        this.snackBar.open(res.message, "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
@@ -59,7 +59,7 @@ export class LoginComponent {
         });
       }
     }, error => {
-      this.snackBar.open("Network Error", "Close", { 
+      this.snackBar.open("Network Error", "Close", {
         duration: 3000,
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
@@ -74,17 +74,22 @@ export class LoginComponent {
     const formValue = this.loginForm.value;
     this.authService.signin(formValue).subscribe((res:any)=> {
       if(res){
-        this.snackBar.open("Login Success", "Close", { 
+        this.snackBar.open("Login Success", "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
           panelClass: ['success-snackbar']
         });
         sessionStorage.setItem("ecommerceUser", JSON.stringify(res));
-        this.router.navigateByUrl("home");
+        const userRole = this.extractRolefromToken(res.token);
+        if(userRole == "ADMIN"){
+          this.router.navigateByUrl("admin/dashboard");
+        }else{
+          this.router.navigateByUrl("home");
+        }
 
       }else{
-        this.snackBar.open("Invalid Credentials", "Close", { 
+        this.snackBar.open("Invalid Credentials", "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
@@ -93,7 +98,7 @@ export class LoginComponent {
       }
 
     }, error => {
-      this.snackBar.open("Network Error", "Close", { 
+      this.snackBar.open("Network Error", "Close", {
         duration: 3000,
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
@@ -103,4 +108,12 @@ export class LoginComponent {
     })
   }
 
+  private extractRolefromToken(token: string): string {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role || 'Client';
+    } catch {
+      return 'USER';
+    }
+  }
 }

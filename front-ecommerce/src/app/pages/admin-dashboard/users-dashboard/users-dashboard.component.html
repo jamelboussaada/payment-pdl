@@ -1,0 +1,51 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="content-wrapper" [ngClass]="{'content-expanded': !sidebarActive}">
+  <div class="admin-dashboard-main-content">
+    <div class="dashboard-container">
+      <h2>Admin Users Dashboard</h2>
+
+      <div class="users-overview-section card">
+        <h3>Registered Users</h3>
+        <div *ngIf="users.length === 0" class="no-users">
+          No users found.
+        </div>
+
+        <table *ngIf="users.length > 0" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Enabled</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td>
+                <span class="badge" [ngClass]="user.enabled ? 'bg-success' : 'bg-danger'">
+                  {{ user.enabled ? 'Yes' : 'No' }}
+                </span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary"
+                      (click)="toggleUserStatus(user)">
+                {{ user.enabled ? 'Disable' : 'Enable' }}
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
