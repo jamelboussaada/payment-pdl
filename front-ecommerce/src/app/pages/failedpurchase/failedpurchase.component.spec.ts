@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FailedpurchaseComponent } from './failedpurchase.component';
+import { FailedPurchaseComponent } from './failedpurchase.component';
 
 describe('FailedpurchaseComponent', () => {
-  let component: FailedpurchaseComponent;
-  let fixture: ComponentFixture<FailedpurchaseComponent>;
+  let component: FailedPurchaseComponent;
+  let fixture: ComponentFixture<FailedPurchaseComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FailedpurchaseComponent]
+      imports: [FailedPurchaseComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FailedpurchaseComponent);
+    fixture = TestBed.createComponent(FailedPurchaseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

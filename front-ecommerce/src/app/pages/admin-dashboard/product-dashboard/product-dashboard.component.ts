@@ -71,6 +71,21 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
   }
 
 
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.newProduct.imageUrl = reader.result as string;
+      };
+    }
+  }
+
+  clearImage(): void {
+    this.newProduct.imageUrl = '';
+  }
+
   editProduct(product: Product): void {
     console.log('Edit product:', product);
   }

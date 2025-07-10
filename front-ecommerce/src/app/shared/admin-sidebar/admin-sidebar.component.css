@@ -1,5 +1,5 @@
 .bg-blue-500 {
-    background-color: #3b82f6;
+    background-color: rgb(94 114 228/var(--tw-bg-opacity,1));
 }
 .dark .dark\:hidden {
     display: none;
