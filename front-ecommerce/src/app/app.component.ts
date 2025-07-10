@@ -9,7 +9,7 @@ import { AdminSidebarComponent } from './shared/admin-sidebar/admin-sidebar.comp
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NotificationComponent, CartPopupComponent, AdminSidebarComponent],
+  imports: [RouterOutlet, NotificationComponent, CartPopupComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
