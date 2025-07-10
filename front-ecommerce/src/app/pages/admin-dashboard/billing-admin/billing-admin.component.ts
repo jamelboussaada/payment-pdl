@@ -1,9 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AdminSidebarComponent } from '../../../shared/admin-sidebar/admin-sidebar.component';
 import { SidebarService } from '../../../core/services/sidebar.service';
 import { Subscription } from 'rxjs';
+
+interface Command {
+  id: number;
+  clientName: string;
+  clientEmail:string
+  date: string;
+  totalPrice: number;
+  products: {
+    name: string;
+    quantity: number;
+    price: number;
+  }[];
+}
 
 @Component({
   selector: 'app-billing-admin',
@@ -12,8 +25,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './billing-admin.component.html',
   styleUrl: './billing-admin.component.css'
 })
+
 export class BillingAdminComponent implements OnInit, OnDestroy {
-  commands: any[] = [];
+
+  commands: Command[] = [];
   sidebarActive: boolean = true;
   private sidebarSubscription: Subscription = new Subscription();
 
@@ -33,12 +48,23 @@ export class BillingAdminComponent implements OnInit, OnDestroy {
   }
 
   loadCommands(): void {
-    // Placeholder for API call to fetch command data
-    // Replace with your actual API endpoint
-    this.http.get<any[]>('http://localhost:8080/api/commands').subscribe(data => {
-      this.commands = data;
-    }, error => {
-      console.error('Error fetching commands:', error);
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.get<any[]>('http://localhost:8080/api/commands' , {headers}).subscribe(response => {
+      this.commands = response.map(cmd => ({
+        id: cmd.id,
+        clientName: `${cmd.user.name} ${cmd.user.lastName}`,
+        clientEmail: cmd.user.email,
+        date: cmd.date,
+        totalPrice: cmd.total,
+        products: cmd.items.map((item: any) => ({
+          name: item.nom,
+          quantity: item.quantite,
+          price: item.prix
+        }))
+      }));
     });
   }
 }
