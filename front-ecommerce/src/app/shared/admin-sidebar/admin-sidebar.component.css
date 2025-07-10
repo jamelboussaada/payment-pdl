@@ -426,6 +426,9 @@ a {
 .whitespace-nowrap {
     white-space: nowrap;
 }
+.rounded-lg {
+    border-radius: 0.5rem;
+}
 .px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -492,4 +495,11 @@ h6 {
 }
 .ni-single-02:before {
     content: "\ea4c";
+}
+
+.active-sidebar-link {
+    background-color: rgba(59, 130, 246, 0.13);
+    color: #000000;
+    opacity: 1;
+    font-weight: 600;
 }
