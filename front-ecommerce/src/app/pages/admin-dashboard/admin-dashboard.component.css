@@ -1,0 +1,56 @@
+/* General card styling */
+.card {
+  background-color: #fff;
+  border-radius: 0.75rem; /* Matches rounded-2xl */
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05); /* A subtle shadow */
+  padding: 1.5rem; /* Matches p-6 or p-4 */
+  margin-bottom: 1.5rem; /* Spacing between cards */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+}
+
+/* Specific styles for the dashboard cards */
+.dashboard-card-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.dashboard-card-title {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  text-transform: uppercase;
+  color: #67748e; /* A muted grey */
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-card-value {
+  font-size: 1.5rem;
+  font-weight: 700; /* font-bold */
+  color: #344767; /* A darker text color */
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card-percentage {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 700; /* font-bold */
+}
+
+.dashboard-card-icon-container {
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  border-radius: 50%; /* rounded-circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+/* Adjustments for the layout */
+.w-full.px-3.mb-6.sm\:w-1\/2.sm\:flex-none.xl\:mb-0.xl\:w-1\/4 > div {
+  height: 100%; /* Ensure cards in a row have equal height */
+}

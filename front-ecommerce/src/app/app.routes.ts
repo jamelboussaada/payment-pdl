@@ -8,10 +8,10 @@ import { FailedPurchaseComponent } from './pages/failedpurchase/failedpurchase.c
 import { ProductDescriptionComponent } from './pages/product-description/product-description.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { AdminDashboardComponent } from './pages/admin-dashboard/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/admin-dashboard/dashboard/dashboard.component';
 import { ProductDashboardComponent } from './pages/admin-dashboard/product-dashboard/product-dashboard.component';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
-import {UsersDashboardComponent} from './pages/admin-dashboard/users-dashboard/users-dashboard.component';
+import { UsersDashboardComponent} from './pages/admin-dashboard/users-dashboard/users-dashboard.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'product/:id', component: ProductDescriptionComponent},
     { path: 'forgot-password', component: ForgotPasswordComponent},
     { path: 'reset-password', component: ResetPasswordComponent},
-    { path: 'admin/dashboard', component: AdminDashboardComponent},
+    { path: 'admin/dashboard', component: DashboardComponent},
     { path: 'invoices', component: InvoicesComponent},
     { path: 'admin/products', component: ProductDashboardComponent},
     { path: 'admin/users', component: UsersDashboardComponent},

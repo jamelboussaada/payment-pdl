@@ -1,24 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminSidebarComponent } from "../../../shared/admin-sidebar/admin-sidebar.component";
-import { SidebarService } from '../../../core/services/sidebar.service';
 import { HttpClient } from '@angular/common/http';
+import { AdminSidebarComponent } from '../../../shared/admin-sidebar/admin-sidebar.component';
+import { SidebarService } from '../../../core/services/sidebar.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule, AdminSidebarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  imports: [CommonModule, AdminSidebarComponent]
+  styleUrls: ['./dashboard.component.css']
 })
-export class AdminDashboardComponent {
-  
+export class DashboardComponent implements OnInit, OnDestroy {
+  totalCommands: number = 0;
+  pendingCommands: number = 0;
+  completedCommands: number = 0;
   sidebarActive: boolean = true;
   private sidebarSubscription: Subscription = new Subscription();
 
-  constructor(private sidebarService: SidebarService, private http: HttpClient, ) { }
+  constructor(private http: HttpClient, private sidebarService: SidebarService) { }
 
   ngOnInit(): void {
+    this.loadCommandStatistics();
     this.sidebarSubscription = this.sidebarService.sidebarActive$.subscribe(active => {
       this.sidebarActive = active;
     });
@@ -30,4 +34,13 @@ export class AdminDashboardComponent {
     }
   }
 
+  loadCommandStatistics(): void {
+    // Placeholder for API call to fetch command statistics
+    // Replace with your actual API endpoint
+    this.http.get<any>('http://localhost:8080/api/commands/statistics').subscribe(data => {
+      this.totalCommands = data.totalCommands || 0;
+      this.pendingCommands = data.pendingCommands || 0;
+      this.completedCommands = data.completedCommands || 0;
+    });
+  }
 }
