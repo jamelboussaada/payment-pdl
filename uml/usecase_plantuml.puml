@@ -1,0 +1,50 @@
+@startuml
+left to right direction
+
+actor Customer
+actor Administrator
+actor "Payment Gateway" as PaymentGateway
+actor "Email Service" as EmailService
+
+rectangle "E-commerce Platform" {
+
+  ' Customer Use Cases
+  (User Authentication)
+  (Browse Products)
+  (Manage Shopping Cart)
+  (Place Order)
+  (View Order History)
+  (Manage Invoices)
+
+  ' Administrator Use Cases
+  (Administer Users)
+  (Administer Products)
+  (Administer Orders)
+
+  ' System Interactions
+  (Process Payment)
+  (Send Notifications)
+
+  ' Relationships
+  Customer -- (User Authentication)
+  Customer -- (Browse Products)
+  Customer -- (Manage Shopping Cart)
+  Customer -- (Place Order)
+  Customer -- (View Order History)
+  Customer -- (Manage Invoices)
+
+  Administrator -- (Administer Users)
+  Administrator -- (Administer Products)
+  Administrator -- (Administer Orders)
+
+  (Place Order) .> (Process Payment) : <<include>>
+  (Process Payment) -- PaymentGateway
+
+  (User Authentication) .> (Send Notifications) : <<include>>
+  (Place Order) .> (Send Notifications) : <<include>>
+  (Send Notifications) -- EmailService
+
+  (View Order History) .> (Manage Invoices) : <<extend>>
+
+}
+@enduml
