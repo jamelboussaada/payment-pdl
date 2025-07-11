@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -163,10 +163,15 @@ if (productId) {
   }
 
   // ========== Public Methods ==========
-  public fetchProducts(): void {
-    this.http.get<Product[]>('assets/products.json').subscribe({
-      next: (data) => this.products = data,
-      error: (error) => console.error('Error fetching products:', error)
+  fetchProducts(): void {
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<Product[]>('http://localhost:8080/api/produits', {headers}).subscribe(data => {
+      this.products = data;
     });
   }
 

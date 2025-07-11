@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router  } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
@@ -52,26 +52,27 @@ export class ProductDescriptionComponent implements OnInit{
   }
 
   private fetchProductDetails(productId: string): void {
-  this.isLoading = true;
-  this.error = null;
+    this.isLoading = true;
+    this.error = null;
 
-  this.http.get<Product[]>('assets/products.json').subscribe({
-    next: (products) => {
-      const foundProduct = products.find(p => p.id === +productId);
-      if (foundProduct) {
-        this.product = foundProduct;
-      } else {
-        this.error = 'Product not found';
+    const token = JSON.parse(sessionStorage.getItem("ecommerceUser") || '{}').token;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<Product>(`http://localhost:8080/api/produits/${productId}`, { headers }).subscribe({
+      next: (product) => {
+        this.product = product;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching product:', error);
+        this.error = 'Failed to load product details';
+        this.isLoading = false;
       }
-      this.isLoading = false;
-    },
-    error: (error) => {
-      console.error('Error fetching products:', error);
-      this.error = 'Failed to load product details';
-      this.isLoading = false;
-    }
-  });
-}
+    });
+  }
 
   addToCart(event: Event): void {
     event.preventDefault(); // Prevent default anchor tag behavior
