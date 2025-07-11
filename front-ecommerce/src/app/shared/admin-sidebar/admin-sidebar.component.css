@@ -503,3 +503,11 @@ h6 {
     opacity: 1;
     font-weight: 600;
 }
+
+.text-red-500 {
+    color: #ef4444;
+}
+
+.fa-sign-out-alt:before {
+    content: "\f2f5";
+}
