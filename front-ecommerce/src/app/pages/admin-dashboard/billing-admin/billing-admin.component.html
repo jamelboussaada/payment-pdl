@@ -43,9 +43,9 @@
               </td>
               <td class="py-3 px-4">{{ command.products[0].name }}</td>
               <td class="py-3 px-4">{{ command.products[0].quantity }}</td>
-              <td class="py-3 px-4">{{ command.products[0].price | currency:'USD' }}</td>
+              <td class="py-3 px-4">{{ command.products[0].price | currency:'EUR' }}</td>
               <td class="py-3 px-4" [attr.rowspan]="command.products.length">
-                {{ command.totalPrice }}
+                {{ command.totalPrice | currency:'EUR' }}
               </td>
               <td class="py-3 px-4" [attr.rowspan]="command.products.length">
                 {{ command.date | date:'shortDate' }}
@@ -57,7 +57,7 @@
             <tr *ngFor="let product of command.products.slice(1)" class="border-b border-gray-200">
               <td class="py-3 px-4">{{ product.name }}</td>
               <td class="py-3 px-4">{{ product.quantity }}</td>
-              <td class="py-3 px-4">{{ product.price | currency:'USD' }}</td>
+              <td class="py-3 px-4">{{ product.price | currency:'EUR' }}</td>
             </tr>
           </ng-container>
 

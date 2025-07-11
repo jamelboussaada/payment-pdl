@@ -86,7 +86,7 @@ export class CartComponent implements OnInit {
           setTimeout(() => {
             console.log(response)
             window.location.href = response.url;
-          }, 4000); // 4-second delay
+          }, 1000);
         } else {
           this.snackBar.open('Payment initiated, but no redirect URL received.', 'Close', {
             duration: 3000,
