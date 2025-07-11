@@ -12,6 +12,7 @@ import { DashboardComponent } from './pages/admin-dashboard/dashboard/dashboard.
 import { ProductDashboardComponent } from './pages/admin-dashboard/product-dashboard/product-dashboard.component';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { UsersDashboardComponent} from './pages/admin-dashboard/users-dashboard/users-dashboard.component';
+import { AdminProfileComponent } from './pages/admin-dashboard/admin-profile/admin-profile.component';
 // import { BillingAdminComponent } from './pages/admin-dashboard/billing-admin/billing-admin.component';
 
 export const routes: Routes = [
@@ -29,5 +30,6 @@ export const routes: Routes = [
     { path: 'invoices', component: InvoicesComponent},
     { path: 'admin/products', component: ProductDashboardComponent},
     { path: 'admin/users', component: UsersDashboardComponent},
+    { path: 'admin/profile', component: AdminProfileComponent},
     // { path: 'admin/billing', component: BillingAdminComponent},
 ];
