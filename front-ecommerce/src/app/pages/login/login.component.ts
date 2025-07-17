@@ -41,32 +41,30 @@ export class LoginComponent {
   showRegisterForm() {
     return this.isRegisterView;
   }
-  onRegister(){
-    this.authService.signup(this.registerForm.value).subscribe((res:any)=> {
-      if(res.result){
+  onRegister() {
+    this.authService.signup(this.registerForm.value).subscribe({
+      next: (res: any) => {
         this.snackBar.open("Customer Registered Successfully", "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
           panelClass: ['success-snackbar']
         });
-      }else{
-        this.snackBar.open(res.message, "Close", {
+
+        // Redirect to login view
+        this.isRegisterView = false;
+      },
+      error: (error) => {
+        this.snackBar.open("Network Error", "Close", {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
           panelClass: ['error-snackbar']
         });
       }
-    }, error => {
-      this.snackBar.open("Network Error", "Close", {
-        duration: 3000,
-        verticalPosition: 'bottom',
-        horizontalPosition: 'right',
-        panelClass: ['error-snackbar']
-      });
-    })
+    });
   }
+
 
   //login api
   onLogin(){
